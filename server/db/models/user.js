@@ -3,6 +3,29 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  photoUrl: {
+    type: Sequelize.STRING,
+    defaultValue:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/JaneAustenSilhouette.png/76px-JaneAustenSilhouette.png'
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
