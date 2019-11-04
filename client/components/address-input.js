@@ -1,35 +1,35 @@
 import React from 'react'
 
-const AddressInput = props => {
+export const AddressInput = props => {
   return (
     <div>
-      <label htmlFor="name">Name</label>
+      <label htmlFor={`${props.type}-name`}>Name</label>
       <input
-        name="name"
+        name={`${props.type}-name`}
         value={props.address.name}
         onChange={() => props.handleChange(event)}
       />
-      <label htmlFor="street">Street Address</label>
+      <label htmlFor={`${props.type}-street`}>Street Address</label>
       <input
-        name="street"
+        name={`${props.type}-street`}
         value={props.address.street}
         onChange={() => props.handleChange(event)}
       />
-      <label htmlFor="city">City</label>
+      <label htmlFor={`${props.type}-city`}>City</label>
       <input
-        name="city"
+        name={`${props.type}-city`}
         value={props.address.city}
         onChange={() => props.handleChange(event)}
       />
-      <label htmlFor="state">State</label>
+      <label htmlFor={`${props.type}-state`}>State</label>
       <input
-        name="state"
+        name={`${props.type}-state`}
         value={props.address.state}
         onChange={() => props.handleChange(event)}
       />
-      <label htmlFor="zip">Zip</label>
+      <label htmlFor={`${props.type}-zip`}>Zip</label>
       <input
-        name="zip"
+        name={`${props.type}-zip`}
         value={props.address.zip}
         onChange={() => props.handleChange(event)}
       />
