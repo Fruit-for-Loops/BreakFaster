@@ -4,6 +4,7 @@ body {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 label {
@@ -18,4 +19,10 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

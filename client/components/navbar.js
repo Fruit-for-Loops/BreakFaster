@@ -1,28 +1,43 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
 import {logout} from '../store'
+import UserHome from './user-home'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, userEmail}) => (
   <div>
     <h1>Breakfaster</h1>
     <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )}
+      <div>
+        <Link to="/home">Home</Link>
+        <Link to="/about">About</Link>
+      </div>
+      <div>
+        {isLoggedIn ? (
+          <div>
+            {/* {Will show welcome, name and on hover will show option to logout */}
+            <div className="logoutDropdown">
+              <Link className="dropdownBtn">Welcome, {userEmail}</Link>
+              <div className="dropdownContent">
+                <a href="#" onClick={handleClick} className="logout">
+                  Logout
+                </a>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div>
+            {/* On hover display login form or sign up form - once logged in, repalce "login and sign up with email" */}
+            <Link to="/login" className="loginDropdown">
+              Login
+            </Link>
+            <Link to="/signup" className="signupDropdown">
+              Sign Up
+            </Link>
+          </div>
+        )}
+      </div>
     </nav>
     <hr />
   </div>
@@ -33,7 +48,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userEmail: state.user.email
   }
 }
 
