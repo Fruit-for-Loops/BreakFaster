@@ -17,7 +17,9 @@ class DisconnectedCheckout extends Component {
   render() {
     return (
       <div>
-        <form>
+        <h1>Checkout</h1>
+        {/* Display order summary and total (items, quantity, price, subtotal, total) */}
+        <form handleSubmit={() => this.handleSubmit(event)}>
           <label htmlFor="shipping-address">Shipping Address:</label>
           <AddressInput
             address={this.props.shippingAddress}
@@ -30,23 +32,13 @@ class DisconnectedCheckout extends Component {
             handleChange={this.handleChange}
             type="billing"
           />
+          {/* Credit Card Info */}
+          <button type="submit">Submit</button>
         </form>
       </div>
     )
   }
 }
-
-//Display order summary and total (items, quantity, price, subtotal, total)
-
-//Shipping Address
-//Address Component -> takes props if user has address
-
-//Billing Address
-//Address Component -> takes props if user has address
-
-//Credit Card Info
-
-//Submit Button
 
 const mapStateToProps = state => {
   return {
