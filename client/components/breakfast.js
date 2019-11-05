@@ -1,14 +1,13 @@
 import React from 'react'
 
-const singleBreakfast = breakfast => {
+export const Breakfast = props => {
   return (
-    <div id="breakfast">
-      <img src={breakfast.imageUrl} />
-      <div id="breakfast-info">
-        <p>Name: {breakfast.name}</p>
-      </div>
+    <div id="breakfastItem">
+      <img src={props.breakfast.pictureUrl} />
+      <p>{props.breakfast.name}</p>
+      <p>${props.breakfast.price}</p>
     </div>
   )
 }
 
-export default singleBreakfast
+// export default Breakfast
