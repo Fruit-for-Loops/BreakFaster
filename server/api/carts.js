@@ -3,18 +3,19 @@ const {Cart} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
+  const id = req.user.id
   try {
-    if (!req.session.userId) {
+    if (!id) {
       const guestCart = await Cart.findOne({
         where: {
-          id: req.session.cartId
+          id: id
         }
       })
       res.json(guestCart)
     } else {
       const userCart = await Cart.findOne({
         where: {
-          userId: req.session.userId
+          userId: id
         }
       })
       res.json(userCart)

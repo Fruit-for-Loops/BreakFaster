@@ -12,16 +12,31 @@ async function seed() {
       firstName: 'Katey',
       lastName: 'Phillips',
       isAdmin: true,
-      email: 'kateyphi@gmail.com'
+      email: 'kateyphi@gmail.com',
+      password: '1234'
     }),
     User.create({
       firstName: 'Alexa',
       lastName: 'King',
       isAdmin: true,
-      email: 'alexaking@gmail.com'
+      email: 'alexaking@gmail.com',
+      password: '1234'
+    }),
+    User.create({
+      firstName: 'Andi',
+      lastName: 'Plummer',
+      isAdmin: true,
+      email: 'andiplummer@gmail.com',
+      password: '1234'
+    }),
+    User.create({
+      firstName: 'Jenna',
+      lastName: 'Waltuch',
+      isAdmin: true,
+      email: 'jennawaltuch@gmail.com',
+      password: '1234'
     })
   ])
-
   const addresses = await Promise.all([
     Address.create({
       line1: '123 main st',
@@ -38,7 +53,6 @@ async function seed() {
       zip: 10005
     })
   ])
-
   const breakfasts = await Promise.all([
     Breakfast.create({
       name: 'Full English Breakfast',
@@ -53,18 +67,42 @@ async function seed() {
       description:
         'This vegan breakfast includes tofu scramble, hash browns, and vegan sausage',
       tags: ['vegetarian', 'vegan']
+    }),
+    Breakfast.create({
+      name: 'Cereal',
+      price: 5.99,
+      stock: 100,
+      description: 'Just cheerios in milk.',
+      tags: ['vegetarian']
+    }),
+    Breakfast.create({
+      name: 'Gluten Free Pancake Slam',
+      price: 12.99,
+      stock: 100,
+      description:
+        'This gluten free breakfast includes pancakes, eggs, hash browns, and sausage.'
     })
   ])
-
   const carts = await Promise.all([
     Cart.create({
-      items: [1, 1, 1, 2, 2, 2, 2, 2],
-      purchased: new Date()
-    }),
-    Cart.create({
-      items: [2, 2, 1, 1, 1, 1],
+      items: [1, 1, 1, 2, 2, 2, 2, 2, 3],
       purchased: new Date(),
       userId: 1
+    }),
+    Cart.create({
+      items: [1, 1, 1, 1, 4, 4, 4],
+      purchased: new Date(),
+      userId: 2
+    }),
+    Cart.create({
+      items: [3, 3, 4],
+      purchased: new Date(),
+      userId: 3
+    }),
+    Cart.create({
+      items: [2],
+      purchased: null,
+      userId: 4
     })
   ])
   console.log(
