@@ -26,3 +26,41 @@ nav {
   flex-direction: row;
   justify-content: space-between;
 }
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown h2:hover {
+  cursor: pointer;
+}
+
+.dropdown .dropdownBtn {
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #e5e5e5;
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin-left: 10px;
+}
+
+.loginNav .dropdownContent {
+  width: 400px;
+  right: 0;
+  margin-right: 40px;
+}

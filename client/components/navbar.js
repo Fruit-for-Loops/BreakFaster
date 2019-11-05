@@ -4,10 +4,11 @@ import {connect} from 'react-redux'
 import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
 import {logout} from '../store'
 import UserHome from './user-home'
+import {Login, Signup} from '../components'
 
 const Navbar = ({handleClick, isLoggedIn, userEmail}) => (
   <div>
-    <h1>Breakfaster</h1>
+    <h1>BreakFaster</h1>
     <nav>
       <div>
         <Link to="/home">Home</Link>
@@ -17,7 +18,7 @@ const Navbar = ({handleClick, isLoggedIn, userEmail}) => (
         {isLoggedIn ? (
           <div>
             {/* {Will show welcome, name and on hover will show option to logout */}
-            <div className="logoutDropdown">
+            <div className="dropdown">
               <Link className="dropdownBtn">Welcome, {userEmail}</Link>
               <div className="dropdownContent">
                 <a href="#" onClick={handleClick} className="logout">
@@ -27,14 +28,20 @@ const Navbar = ({handleClick, isLoggedIn, userEmail}) => (
             </div>
           </div>
         ) : (
-          <div>
+          <div className="loginNav">
             {/* On hover display login form or sign up form - once logged in, repalce "login and sign up with email" */}
-            <Link to="/login" className="loginDropdown">
-              Login
-            </Link>
-            <Link to="/signup" className="signupDropdown">
-              Sign Up
-            </Link>
+            <div className="dropdown">
+              <a>Login</a>
+              <div className="dropdownContent">
+                <Login />
+              </div>
+            </div>
+            <div className="dropdown">
+              <a>Sign Up</a>
+              <div className="dropdownContent">
+                <Signup />
+              </div>
+            </div>
           </div>
         )}
       </div>
