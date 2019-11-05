@@ -23,25 +23,25 @@ class DisconnectedCheckout extends Component {
     this.handleSameAddressSelect = this.handleSameAddressSelect.bind(this)
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+  // handleChange(event) {
+  //   this.setState({
+  //     [event.target.name]: event.target.value
+  //   })
+  // }
 
-  handleSameAddressSelect(event) {
-    let billingAddressForm = document.getElementById('billing')
-    billingAddressForm.classList.toggle('disabled')
-    if (event.target.checked) {
-      this.setState({
-        billingName: this.shippingName,
-        billingStreet: this.shippingStreet,
-        billingCity: this.shippingCity,
-        billingState: this.shippingState,
-        shippingZip: this.shippingZip
-      })
-    }
-  }
+  // handleSameAddressSelect(event) {
+  //   let billingAddressForm = document.getElementById('billing')
+  //   billingAddressForm.classList.toggle('disabled')
+  //   if (event.target.checked) {
+  //     this.setState({
+  //       billingName: this.shippingName,
+  //       billingStreet: this.shippingStreet,
+  //       billingCity: this.shippingCity,
+  //       billingState: this.shippingState,
+  //       shippingZip: this.shippingZip
+  //     })
+  //   }
+  // }
 
   handleSubmit() {
     console.log('submit')
