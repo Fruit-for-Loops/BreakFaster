@@ -1,18 +1,77 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Item, Address, Cart} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({
+      firstName: 'Katey',
+      lastName: 'Phillips',
+      isAdmin: true,
+      email: 'kateyphi@gmail.com'
+    }),
+    User.create({
+      firstName: 'Alexa',
+      lastName: 'King',
+      isAdmin: true,
+      email: 'alexaking@gmail.com'
+    })
   ])
 
-  console.log(`seeded ${users.length} users`)
+  const addresses = await Promise.all([
+    Address.create({
+      line1: '123 main st',
+      line2: 'apt 4',
+      city: 'Brooklyn',
+      state: 'NY',
+      zip: 11206
+    }),
+    Address.create({
+      line1: '987 wall st',
+      line2: 'penthouse',
+      city: 'New York',
+      state: 'NY',
+      zip: 10005
+    })
+  ])
+
+  const items = await Promise.all([
+    Item.create({
+      name: 'Full English Breakfast',
+      price: 15.99,
+      stock: 100,
+      description: 'Ya got eggs, sausage, baked beans, some other stuff'
+    }),
+    Item.create({
+      name: 'Tofu Scramble Slam',
+      price: 10.99,
+      stock: 100,
+      description:
+        'This vegan breakfast includes tofu scramble, hash browns, and vegan sausage',
+      tags: ['vegetarian', 'vegan']
+    })
+  ])
+
+  const carts = await Promise.all([
+    Cart.create({
+      items: [1, 1, 1, 2, 2, 2, 2, 2],
+      purchased: new Date()
+    }),
+    Cart.create({
+      items: [2, 2, 1, 1, 1, 1],
+      purchased: new Date(),
+      userId: 1
+    })
+  ])
+  console.log(
+    `seeded ${users.length} users, ${addresses.length} addresses, ${
+      carts.length
+    } carts, and ${items.length} items`
+  )
   console.log(`seeded successfully`)
 }
 
