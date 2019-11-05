@@ -1,5 +1,5 @@
 const User = require('./user')
-const Item = require('./item')
+const Breakfast = require('./breakfast')
 const Address = require('./address')
 const Cart = require('./cart')
 /**
@@ -33,7 +33,7 @@ User.hasMany(Cart)
 
 module.exports = {
   User,
-  Item,
+  Breakfast,
   Address,
   Cart
 }
