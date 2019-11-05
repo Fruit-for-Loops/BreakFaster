@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
 import {logout} from '../store'
-import UserHome from './user-home'
 import {Login, Signup} from '../components'
 
 const Navbar = ({handleClick, isLoggedIn, userEmail}) => (
