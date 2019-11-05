@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getAllBreakfasts} from '../reducers'
+import {getAllBreakfasts} from '../store'
 // import Breakfast from './Breakfast';
 
 class AllBreakfasts extends React.Component {
