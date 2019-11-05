@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import AddressInput from './address-input'
+import {createOrder} from '../store/order'
 import {connect} from 'react-redux'
 
-class DisconnectedCheckout extends Component {
+class Checkout extends Component {
   constructor(props) {
     super(props)
     // this.state = {
@@ -18,9 +19,9 @@ class DisconnectedCheckout extends Component {
     //   shippingState: this.props.shippingAddress.state,
     //   shippingZip: this.props.shippingAddress.zip
     // }
-    this.handleChange = this.handleChange.bind(this)
+    // this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleSameAddressSelect = this.handleSameAddressSelect.bind(this)
+    // this.handleSameAddressSelect = this.handleSameAddressSelect.bind(this)
   }
 
   // handleChange(event) {
@@ -43,7 +44,9 @@ class DisconnectedCheckout extends Component {
   //   }
   // }
 
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault()
+    this.props.createOrder(order)
     console.log('submit')
   }
 
@@ -53,7 +56,7 @@ class DisconnectedCheckout extends Component {
         <h1>Checkout</h1>
         <h2>Order Summary</h2>
         {/* Display order summary and total (items, quantity, price, subtotal, total) */}
-        <form handleSubmit={() => this.handleSubmit(event)}>
+        <form onSubmit={() => this.handleSubmit(event)}>
           {/* <label htmlFor="shipping-address">Shipping Address:</label>
           <AddressInput
             address={this.props.shippingAddress}
@@ -87,8 +90,10 @@ const mapStateToProps = state => {
   }
 }
 
-//mapDispatchToProps
+const mapDispatchToProps = dispatch => {
+  return {
+    createOrder: () => dispatch(createOrder(order))
+  }
+}
 
-const Checkout = connect(mapStateToProps)(DisconnectedCheckout)
-
-export default Checkout
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout)
