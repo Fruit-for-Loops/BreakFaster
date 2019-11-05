@@ -27,6 +27,12 @@ nav {
   justify-content: space-between;
 }
 
+.allBreakfasts {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .dropdown {
   float: left;
   overflow: hidden;
