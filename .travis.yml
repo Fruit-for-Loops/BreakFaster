@@ -15,14 +15,16 @@ install:
 before_script:
   - psql -c 'create database "breakfaster-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 script:
-  - npm test             # test the code
+  - npm test # test the code
   - npm run build-client # make the bundle
-
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: breakfaster
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: p9tAp7GMVwLK6Vco+S15C5m9oLgeLXS/dGFXZU8c5kcy7F73+Wm8ODxM/I+q/JyCKgw43g4onYsBSOk98clLm8ctzGDQG6q4tqQDZ4BjJ5I3t4UtURHuhevuWG0cWoRGwwEJ5qzgB4LT1gvMGdpABKv9PbdfyDk789sMK9fdo3h7O3HiFNuQexHy+G9UgTgaQiEvogTTTKoPnT4FCtYd0qB1slRXTdmxGN0fxaenO/wm0nyXO2/IK0GCibhsIlGm8M9gSSbQ3Jvs32NWXuaPQ1HvXwVBOmjOGnE9uMeSQ9ZSeeWh8XXmRz3o+Ie7WdIk5npTRczL1Be8P6W3Lwvw9CeTjFTs8QQa2sn0fXtzKh1aPB7ZqVLpwtXTuOrZmr1fVsyEWw+KjzhRfo0hzDfVBDt5dNSluGeZKEF5WP6QSjZYGkyz3wcIIASv8FsoeeAjqRaIUx3afK9yCftPE+9gcrkmpweP6TgtU9JyNUfRqUKexELLZBQSMz6o/Wv94bnG3s7xnGXMCAeb5Hx6MpIQnJBvCevMlssDovn76zUQPi4ZeEWJMqQ8BRMfmOnvTqzyh7reVIIRP5bmrLPnD2t/X+K9TDwSXKCn1pnyZNQJ7r/kXBhy+aOt6OXITOdtXn7OogkHD2tEQmCTjcPP7q1AJIymAm/hRibBpJz1Pu5tJyw=

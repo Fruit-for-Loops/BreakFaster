@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: burlywood;
 }
 
 a {
@@ -14,11 +15,16 @@ label {
 nav a {
   display: inline-block;
   margin: 1em;
+  background-color: burlywood;
 }
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+ul {
+  list-style-type: none;
 }
 
 nav {
@@ -64,3 +70,21 @@ nav {
   right: 0;
   margin-right: 40px;
 }
+
+.allBreakfasts h2 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+/* .breakfastItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center
+} */
