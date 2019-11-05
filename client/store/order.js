@@ -1,39 +1,41 @@
-import axios from 'axios'
+//THIS SHOULD NOT BE NECESSARY, TBD
 
-// ACTION TYPES
-const GOT_ORDERS = 'GET_ORDERS'
+// import axios from 'axios'
 
-// ACTION CREATORS
+// // ACTION TYPES
+// const GOT_ORDERS = 'GET_ORDERS'
 
-const gotOrders = orders => ({
-  type: GOT_ORDERS,
-  orders
-})
+// // ACTION CREATORS
 
-// THUNK CREATORS
-export const createOrder = order => async dispatch => {
-  await axios.post('/api/order', order)
-  const {data} = await axios.get('/api/orders')
-  dispatch(gotOrders(data))
-}
+// const gotOrders = orders => ({
+//   type: GOT_ORDERS,
+//   orders
+// })
 
-export const getOrders = () => async dispatch => {
-  const {data} = await axios.get('/api/orders')
-  dispatch(gotOrders(data))
-}
+// // THUNK CREATORS
+// export const createOrder = order => async dispatch => {
+//   await axios.post('/api/order', order)
+//   const {data} = await axios.get('/api/orders')
+//   dispatch(gotOrders(data))
+// }
 
-// REDUCER
-const initialState = {
-  orders: []
-}
+// export const getOrders = () => async dispatch => {
+//   const {data} = await axios.get('/api/orders')
+//   dispatch(gotOrders(data))
+// }
 
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case GOT_ORDERS:
-      return {...state, orders: action.orders}
-    default:
-      return state
-  }
-}
+// // REDUCER
+// const initialState = {
+//   orders: []
+// }
 
-export default rootReducer
+// const rootReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case GOT_ORDERS:
+//       return {...state, orders: action.orders}
+//     default:
+//       return state
+//   }
+// }
+
+// export default rootReducer
