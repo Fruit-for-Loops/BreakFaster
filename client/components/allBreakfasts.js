@@ -5,20 +5,21 @@ import {getAllBreakfasts} from '../store'
 
 class AllBreakfasts extends React.Component {
   componentDidMount() {
-    this.props.getAllBreakfasts()
+    this.props.getAllBreakfastsThunk()
+    console.log('Breakfasts: ', this.props)
   }
 
   render() {
     return (
       <div id="allBreakfasts">
         <h2 className="section-title">Breakfasts</h2>
-        {/* <ul className="container">
-          {this.props.breakfasts.map(breakfast => (
+        <ul className="container">
+          {/* {this.props.breakfasts.map(breakfast => (
             <div className="card" key={breakfast.id}>
-              <Breakfast breakfast={breakfast} />
+              Breakfast
             </div>
-          ))}
-        </ul> */}
+          ))} */}
+        </ul>
       </div>
     )
   }
@@ -29,7 +30,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getAllBreakfasts: () => dispatch(getAllBreakfasts())
+  getAllBreakfastsThunk: () => dispatch(getAllBreakfasts())
 })
 
 // export default AllBreakfasts
