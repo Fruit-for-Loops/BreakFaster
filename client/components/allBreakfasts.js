@@ -14,7 +14,7 @@ class AllBreakfasts extends React.Component {
     console.log('breakfasts? ', this.props.breakfasts)
     return (
       <div id="allBreakfasts">
-        <h2 className="section-title">Breakfasts</h2>
+        <h2 className="section-title">Menu</h2>
         <ul className="container">
           {this.props.breakfasts
             ? this.props.breakfasts.map(breakfast => (

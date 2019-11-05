@@ -2,11 +2,10 @@ import React from 'react'
 
 export const Breakfast = props => {
   return (
-    <div id="breakfast">
+    <div id="breakfastItem">
       <img src={props.breakfast.pictureUrl} />
-      <div id="breakfast-info">
-        <p>Name: {props.breakfast.name}</p>
-      </div>
+      <p>{props.breakfast.name}</p>
+      <p>${props.breakfast.price}</p>
     </div>
   )
 }

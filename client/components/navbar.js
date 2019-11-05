@@ -7,8 +7,8 @@ import {Login, Signup} from '../components'
 
 const Navbar = ({handleClick, isLoggedIn, userEmail}) => (
   <div>
-    <h1>BreakFaster</h1>
     <nav>
+      <h1>BreakFaster</h1>
       <div>
         <Link to="/home">Home</Link>
         <Link to="/about">About</Link>
