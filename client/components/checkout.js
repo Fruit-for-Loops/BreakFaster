@@ -20,12 +20,27 @@ class DisconnectedCheckout extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSameAddressSelect = this.handleSameAddressSelect.bind(this)
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
+
+  handleSameAddressSelect(event) {
+    let billingAddressForm = document.getElementById('billing')
+    billingAddressForm.classList.toggle('disabled')
+    if (event.target.checked) {
+      this.setState({
+        billingName: this.shippingName,
+        billingStreet: this.shippingStreet,
+        billingCity: this.shippingCity,
+        billingState: this.shippingState,
+        shippingZip: this.shippingZip
+      })
+    }
   }
 
   handleSubmit() {}
@@ -40,15 +55,21 @@ class DisconnectedCheckout extends Component {
           <AddressInput
             address={this.props.shippingAddress}
             handleChange={this.handleChange}
-            type="shipping"
+            id="shipping"
+          />
+          <input
+            type="radio"
+            value="Billing Address is Same as Shipping Address"
+            handleChange={this.handleSameAddressSelect}
           />
           <label htmlFor="billing-address">Billing Address:</label>
           <AddressInput
             address={this.props.billingAddress}
             handleChange={this.handleChange}
-            type="billing"
+            id="billing"
           />
-          {/* Credit Card Info */}
+          {/* Credit Card Info Stripe Component?*/}
+          {/* It appears that with Express Stripe they enter their credit card info with Stripe */}
           <button type="submit">Submit</button>
         </form>
       </div>
