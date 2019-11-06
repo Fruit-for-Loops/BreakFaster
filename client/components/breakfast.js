@@ -6,6 +6,7 @@ export const Breakfast = props => {
       <img src={props.breakfast.pictureUrl} />
       <p>{props.breakfast.name}</p>
       <p>${props.breakfast.price}</p>
+      <button>Add to cart</button>
     </div>
   )
 }
