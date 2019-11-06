@@ -5,25 +5,25 @@ const Sequelize = require('sequelize')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
-  console.log(req.session.cartId)
   const cartSessionId = req.session.cartId
-  const id = req.user.id
   try {
     if (!cartSessionId) {
       let newCart
-      if (id) {
+      if (req.user) {
         newCart = await Cart.create({
-          userId: id
+          userId: req.user.id
         })
       } else {
         newCart = await Cart.create({})
       }
       req.session.cartId = newCart.id
-      const breakfasts = newCart.getBreakfasts()
+      const breakfasts = await newCart.getBreakfasts()
+      console.log('BREAKFASTS:', breakfasts)
       res.json(breakfasts)
     } else {
       const currentCart = await Cart.findByPk(cartSessionId)
-      const breakfasts = currentCart.getBreakfasts()
+      const breakfasts = await currentCart.getBreakfasts()
+      console.log('BREAKFASTS:', breakfasts)
       res.json(breakfasts)
     }
   } catch (err) {
@@ -35,7 +35,7 @@ router.post('/', async (req, res, next) => {
   try {
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.body.breakfastId)
-    currentCart.addBreakfast(currentBreakfast)
+    await currentCart.addBreakfast(currentBreakfast)
     res.sendStatus(201)
   } catch (error) {
     next(error)
@@ -63,7 +63,7 @@ router.put('/increase', async (req, res, next) => {
   }
 })
 
-router.put('/increase', async (req, res, next) => {
+router.put('/decrease', async (req, res, next) => {
   try {
     await CartItem.update(
       {
@@ -88,7 +88,7 @@ router.delete('/', async (req, res, next) => {
   try {
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.body.breakfastId)
-    currentCart.remove(currentBreakfast)
+    await currentCart.remove(currentBreakfast)
     res.sendStatus(204)
   } catch (error) {
     next(error)
