@@ -11,10 +11,10 @@ import {
   Button
 } from 'reactstrap'
 
-// const addCart = (event) =>{
-//   event.preventDefault();
-//   addToCartThunk(event.target.id);
-// }
+const addCart = event => {
+  event.preventDefault()
+  addToCartThunk(event.target.id)
+}
 
 export const Breakfast = props => {
   return (
