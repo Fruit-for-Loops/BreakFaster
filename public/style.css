@@ -202,3 +202,10 @@ nav h1 {
   background-color: #cbd0d8;
   cursor: pointer;
 }
+
+.itemInCart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 20px;
+}

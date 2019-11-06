@@ -3,21 +3,40 @@ import {connect} from 'react-redux'
 import {me} from '../store/user'
 import {getCart} from '../store/cart'
 import {getSingleBreakfast} from '../store/breakfast'
+import CartBadge from './cartBadge.js'
 
 const Cart = props => {
   console.log('PROPS', props)
   return (
     <div>
       <h1>Cart</h1>
-      {props.user.cart
+      <CartBadge />
+      <div className="itemInCart">
+        <p>item name</p>
+        <p>quantity</p>
+        <p>price</p>
+      </div>
+      <div className="itemInCart">
+        <p>item name</p>
+        <p>quantity</p>
+        <p>price</p>
+      </div>
+      <div className="itemInCart">
+        <p>item name</p>
+        <p>quantity</p>
+        <p>price</p>
+        <button className="remove">Remove</button>
+      </div>
+      {/* {props.user.cart
         ? props.user.cart.items.map(item => {
             return (
-              <div key={item}>
-                <h1>{item}</h1>
+              <div>
+                <h1>Item name</h1>
               </div>
             )
           })
-        : console.log('rendering')}
+        : console.log('rendering')} */}
+      <button className="checkoutBtn">Checkout</button>
     </div>
   )
 }

@@ -1,4 +1,6 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {addToCart} from '../store'
 import {
   Card,
   CardImg,
@@ -8,6 +10,11 @@ import {
   CardSubtitle,
   Button
 } from 'reactstrap'
+
+// const addCart = (event) =>{
+//   event.preventDefault();
+//   addToCartThunk(event.target.id);
+// }
 
 export const Breakfast = props => {
   return (
@@ -34,5 +41,18 @@ export const Breakfast = props => {
     </div>
   )
 }
+
+// const mapStateToProps = state => {
+//   return {
+//     user: state.user,
+//     cart: state.cart
+//   }
+// }
+
+// const mapDispatchToProps = dispatch => ({
+//   addToCartThunk: (breakfastId) => dispatch(addToCart(breakfastId))
+// })
+
+// export default connect(null, mapDispatchToProps)(Breakfast)
 
 // export default Breakfast
