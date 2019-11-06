@@ -9,11 +9,9 @@ import Filters from './filters'
 class AllBreakfasts extends React.Component {
   componentDidMount() {
     this.props.getAllBreakfastsThunk()
-    console.log('Breakfasts: ', this.props)
   }
 
   render() {
-    console.log('breakfasts? ', this.props.breakfasts)
     return (
       <div className="allBreakfasts">
         <div className="sidebar">

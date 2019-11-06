@@ -132,6 +132,14 @@ nav h1 {
   justify-content: flex-start;
 }
 
+
+.breakfastItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  
 .card {
   display: flex;
   flex-direction: column;

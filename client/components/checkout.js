@@ -2,6 +2,12 @@ import React, {Component} from 'react'
 import AddressInput from './address-input'
 import {createOrder} from '../store/order'
 import {connect} from 'react-redux'
+import PayNowButton from './payPal'
+
+const PAYMENT_SERVER_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://breakfaster.herokuapp.com/'
+    : 'http://localhost:8080'
 
 class Checkout extends Component {
   constructor(props) {
@@ -78,6 +84,7 @@ class Checkout extends Component {
           {/* It appears that with Express Stripe they enter their credit card info with Stripe */}
           <button type="submit">Checkout</button>
         </form>
+        <PayNowButton />
       </div>
     )
   }
