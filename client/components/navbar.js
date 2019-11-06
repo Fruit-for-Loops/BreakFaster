@@ -19,8 +19,8 @@ const Navbar = ({handleClick, isLoggedIn, userEmail}) => (
             {/* {Will show welcome, name and on hover will show option to logout */}
             <div className="dropdown">
               <Link className="dropdownBtn">Welcome, {userEmail}</Link>
-              <div className="dropdownContent">
-                <a href="#" onClick={handleClick} className="logout">
+              <div className="dropdownContent" onClick={handleClick}>
+                <a href="#" className="logout">
                   Logout
                 </a>
               </div>

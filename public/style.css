@@ -76,6 +76,11 @@ nav h1 {
   display: block;
 }
 
+.dropdownContent a {
+  margin: 0px;
+  padding: 20px;
+}
+
 .dropdownContent {
   display: none;
   position: absolute;

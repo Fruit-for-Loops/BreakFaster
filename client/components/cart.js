@@ -1,36 +1,29 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {me} from '../store/user'
+// import {me} from '../store/user'
 import {getCart} from '../store/cart'
-import {getSingleBreakfast} from '../store/breakfast'
 
-const Cart = props => {
-  console.log('PROPS', props)
-  return (
-    <div>
-      <h1>Cart</h1>
-      {props.user.cart
-        ? props.user.cart.items.map(item => {
-            return (
-              <div key={item}>
-                <h1>{item}</h1>
-              </div>
-            )
-          })
-        : console.log('rendering')}
-    </div>
-  )
+class Cart extends React.Component {
+  componentDidMount() {
+    this.props.getCartThunk()
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Cart</h1>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
     cart: state.cart
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  getSingleBreakfastThunk: () => dispatch(getSingleBreakfast()),
   getCartThunk: () => dispatch(getCart())
 })
 
