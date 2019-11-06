@@ -81,10 +81,10 @@ nav {
   justify-content: space-around;
 }
 
-/* .breakfastItem {
+.breakfastItem {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  text-align: center
-} */
+  text-align: center;
+}

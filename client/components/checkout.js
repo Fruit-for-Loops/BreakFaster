@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import AddressInput from './address-input'
 import {createOrder} from '../store/order'
 import {connect} from 'react-redux'
+import PayNowButton from './payPal'
 
 const PAYMENT_SERVER_URL =
   process.env.NODE_ENV === 'production'
@@ -83,14 +84,7 @@ class Checkout extends Component {
           {/* It appears that with Express Stripe they enter their credit card info with Stripe */}
           <button type="submit">Checkout</button>
         </form>
-        <StripeCheckout
-          name={name}
-          description={description}
-          amount={fromEuroToCent(amount)}
-          token={onToken(amount, description)}
-          currency={CURRENCY}
-          stripeKey={STRIPE_PUBLISHABLE}
-        />
+        <PayNowButton />
       </div>
     )
   }
