@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
-import {logout} from '../store'
+import {logout} from '../store/user'
 import {Login, Signup} from '../components'
 
 const Navbar = ({handleClick, isLoggedIn, userEmail}) => (
@@ -18,9 +18,11 @@ const Navbar = ({handleClick, isLoggedIn, userEmail}) => (
           <div>
             {/* {Will show welcome, name and on hover will show option to logout */}
             <div className="dropdown">
-              <Link className="dropdownBtn">Welcome, {userEmail}</Link>
-              <div className="dropdownContent">
-                <a href="#" onClick={handleClick} className="logout">
+              <Link className="dropdownBtn" id="welcome">
+                Welcome, {userEmail}
+              </Link>
+              <div className="dropdownContent" onClick={handleClick}>
+                <a href="#" id="logout">
                   Logout
                 </a>
               </div>

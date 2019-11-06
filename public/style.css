@@ -1,6 +1,13 @@
 body {
   font-family: sans-serif;
-  background-color: burlywood;
+  background-color: white;
+  height: 2000px;
+  padding: 0px;
+  margin: 0;
+}
+
+*:focus {
+  display: none;
 }
 
 a {
@@ -15,7 +22,8 @@ label {
 nav a {
   display: inline-block;
   margin: 1em;
-  background-color: burlywood;
+  color: white;
+  font-size: 1.25em;
 }
 
 form div {
@@ -31,11 +39,36 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  background-color: #333d51;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 75px;
+}
+
+nav h1 {
+  margin-left: 20px;
+  color: white;
 }
 
 .dropdown {
   float: left;
   overflow: hidden;
+}
+
+.dropdown a {
+  color: white;
+}
+
+#googleAuth {
+  color: black;
+}
+
+#welcome {
+  color: white;
 }
 
 .dropdown h2:hover {
@@ -55,6 +88,11 @@ nav {
   display: block;
 }
 
+.dropdownContent a {
+  margin: 0px;
+  padding: 20px;
+}
+
 .dropdownContent {
   display: none;
   position: absolute;
@@ -71,15 +109,29 @@ nav {
   margin-right: 40px;
 }
 
-.allBreakfasts h2 {
-  text-align: center;
+#logout {
+  color: black;
 }
 
 .container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
 }
+
+.container h1 {
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+.container div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
 
 .breakfastItem {
   display: flex;
@@ -87,4 +139,48 @@ nav {
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card li {
+  margin: 50px;
+}
+
+.allBreakfasts {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sidebar {
+  padding-left: 20px;
+  width: 400px;
+  height: 2000px;
+  background-color: #cbd0d8;
+}
+
+.sidebar h1 {
+  margin-top: 40px;
+}
+
+#breakfastItem {
+  display: flex;
+  flex-direction: column;
+}
+
+#breakfastItem p {
+  margin: 5px;
+}
+
+#breakfastItem button {
+  width: 100px;
+  height: 23px;
+  border-radius: 7px;
+  background-color: #cbd0d8;
+  cursor: pointer;
 }
