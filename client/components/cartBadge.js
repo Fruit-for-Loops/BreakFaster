@@ -5,7 +5,7 @@ const CartBadge = props => {
   return (
     <div>
       <Button color="primary" outline>
-        Cart <Badge color="secondary" />
+        Items In Cart: <Badge color="secondary" />3
       </Button>
     </div>
   )
