@@ -126,28 +126,28 @@ nav h1 {
   margin-left: 40px;
 }
 
-.container div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-}
-
-
 .breakfastItem {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  
-.card {
+}
+
+.breakfastCardContainer {
   display: flex;
-  flex-direction: column;
+  display: column;
   justify-content: flex-start;
 }
 
 .card li {
   margin: 50px;
+}
+
+.container div {
+  display: flex;
+  display: column;
+  justify-content: center;
 }
 
 .allBreakfasts {
@@ -168,16 +168,34 @@ nav h1 {
   margin-top: 40px;
 }
 
-#breakfastItem {
+.breakfastItem {
   display: flex;
   flex-direction: column;
+  height: 300px;
 }
 
-#breakfastItem p {
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 300px;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card p {
+  text-align: left;
+}
+
+.breakfastItem p {
   margin: 5px;
 }
 
-#breakfastItem button {
+.breakfastItem button {
   width: 100px;
   height: 23px;
   border-radius: 7px;

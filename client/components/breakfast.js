@@ -13,22 +13,22 @@ export const Breakfast = props => {
   return (
     <div className="breakfastItem">
       <div>
-        <Card>
+        <Card className="text-left">
           <CardImg
             top
             width="150px"
             src={props.breakfast.pictureUrl}
             alt="Card image cap"
           />
-          <CardBody>
+          <CardBody className="cardBody">
             <CardTitle>{props.breakfast.name}</CardTitle>
             <CardSubtitle>${props.breakfast.price}</CardSubtitle>
             <CardText>
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </CardText>
-            <Button color="primary">Add to Cart</Button>
           </CardBody>
+          <Button color="primary">Add to Cart</Button>
         </Card>
       </div>
     </div>
