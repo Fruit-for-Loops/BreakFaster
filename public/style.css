@@ -60,6 +60,10 @@ nav h1 {
 }
 
 .dropdown a {
+  color: white;
+}
+
+#googleAuth {
   color: black;
 }
 
@@ -103,6 +107,10 @@ nav h1 {
   width: 400px;
   right: 0;
   margin-right: 40px;
+}
+
+#logout {
+  color: black;
 }
 
 .container {
