@@ -42,8 +42,8 @@ export const addItemToCart = breakfastId => async dispatch => {
 
 export const removeItemFromCart = breakfastId => async dispatch => {
   try {
-    const {data} = await axios.delete('/api/carts', breakfastId)
-    dispatch(removeFromCart(data))
+    await axios.delete('/api/carts', breakfastId)
+    dispatch(getCart())
   } catch (error) {
     console.log(error)
   }
@@ -69,8 +69,6 @@ export default function(cart = [], action) {
       return action.cart
     case ADD_TO_CART:
       return action.cart
-    case REMOVE_FROM_CART:
-      return cart
     case UPDATED_QUANTITY:
       return cart
     default:
