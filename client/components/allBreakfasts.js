@@ -7,11 +7,9 @@ import {Breakfast} from './breakfast'
 class AllBreakfasts extends React.Component {
   componentDidMount() {
     this.props.getAllBreakfastsThunk()
-    console.log('Breakfasts: ', this.props)
   }
 
   render() {
-    console.log('breakfasts? ', this.props.breakfasts)
     return (
       <div id="allBreakfasts">
         <h2 className="section-title">Menu</h2>
