@@ -1,21 +1,40 @@
 import axios from 'axios'
-const GET_CART = 'GET_CART'
-const gotCart = cart => ({
-  type: GET_CART,
-  cart
-})
+
+/**
+ * ACTION TYPES
+ */
+const GOT_CART = 'GOT_CART'
+
+/**
+ * INITIAL STATE
+ */
+const initialState = {
+  cart: {}
+}
+
+/**
+ * ACTION CREATORS
+ */
+const gotCart = cart => ({type: GOT_CART, cart})
+
+/**
+ * THUNK CREATORS
+ */
 export const getCart = () => async dispatch => {
   try {
-    const {data} = await axios.get('/auth/carts')
+    const {data} = await axios.get('/api/carts')
     dispatch(gotCart(data))
-  } catch (err) {
-    console.error(err)
+  } catch (error) {
+    console.log(error)
   }
 }
-const defaultCart = {}
-export default function(state = defaultCart, action) {
+
+/**
+ * REDUCER
+ */
+export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_CART:
+    case GOT_CART:
       return action.cart
     default:
       return state

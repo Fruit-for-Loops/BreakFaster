@@ -59,6 +59,14 @@ nav h1 {
   overflow: hidden;
 }
 
+.dropdown a {
+  color: black;
+}
+
+#welcome {
+  color: white;
+}
+
 .dropdown h2:hover {
   cursor: pointer;
 }
