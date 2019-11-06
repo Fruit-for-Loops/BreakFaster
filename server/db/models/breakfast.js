@@ -10,7 +10,7 @@ const Breakfast = db.define('breakfast', {
     }
   },
   price: {
-    type: Sequelize.DECIMAL(2),
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   pictureUrl: {

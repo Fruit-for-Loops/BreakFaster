@@ -1,7 +1,13 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Breakfast, Address, Cart} = require('../server/db/models')
+const {
+  User,
+  Breakfast,
+  Address,
+  Cart,
+  CartItem
+} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -49,13 +55,13 @@ async function seed() {
   const breakfasts = await Promise.all([
     Breakfast.create({
       name: 'Full English Breakfast',
-      price: 15.99,
+      price: 1599,
       stock: 100,
       description: 'Ya got eggs, sausage, baked beans, some other stuff'
     }),
     Breakfast.create({
       name: 'Tofu Scramble Slam',
-      price: 10.99,
+      price: 1099,
       stock: 100,
       description:
         'This vegan breakfast includes tofu scramble, hash browns, and vegan sausage',
@@ -78,30 +84,37 @@ async function seed() {
   ])
   const carts = await Promise.all([
     Cart.create({
-      items: [1, 1, 1, 2, 2, 2, 2, 2, 3],
       purchased: new Date(),
       userId: 1
     }),
     Cart.create({
-      items: [1, 1, 1, 1, 4, 4, 4],
       purchased: new Date(),
       userId: 2
     }),
     Cart.create({
-      items: [3, 3, 4],
       purchased: new Date(),
-      userId: 1
+      userId: 2
+    })
+  ])
+
+  const cartItems = await Promise.all([
+    CartItem.create({
+      quantity: 5,
+      currentPrice: 1599,
+      breakfastId: 1,
+      cartId: 1
     }),
-    Cart.create({
-      items: [2, 2, 1, 1, 1, 1],
-      purchased: new Date(),
-      userId: 3
+    CartItem.create({
+      quantity: 2,
+      currentPrice: 1099,
+      breakfastId: 2,
+      cartId: 3
     })
   ])
   console.log(
     `seeded ${users.length} users, ${addresses.length} addresses, ${
       carts.length
-    } carts, and ${breakfasts.length} items`
+    } carts, ${cartItems.length} cartItems, and ${breakfasts.length} items`
   )
   console.log(`seeded successfully`)
 }
