@@ -6,6 +6,7 @@ import user from './user'
 import order from './order'
 import breakfast from './breakfast'
 import cart from './cart'
+// import "bootstrap/dist/css/bootstrap.css";
 
 const reducer = combineReducers({user, breakfast, order, cart})
 const middleware = composeWithDevTools(
