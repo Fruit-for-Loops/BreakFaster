@@ -1,6 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getAllBreakfasts} from '../store'
+import {Breakfast} from './breakfast'
+import Cart from './cart'
+import Filters from './filters'
 // import Breakfast from './Breakfast';
 
 class AllBreakfasts extends React.Component {
@@ -10,23 +13,36 @@ class AllBreakfasts extends React.Component {
   }
 
   render() {
+    console.log('breakfasts? ', this.props.breakfasts)
     return (
-      <div id="allBreakfasts">
-        <h2 className="section-title">Breakfasts</h2>
+      <div className="allBreakfasts">
+        <div className="sidebar">
+          <Filters />
+        </div>
         <ul className="container">
-          {/* {this.props.breakfasts.map(breakfast => (
-            <div className="card" key={breakfast.id}>
-              Breakfast
-            </div>
-          ))} */}
+          <h1>All breakfasts</h1>
+          <div>
+            {this.props.breakfasts
+              ? this.props.breakfasts.map(breakfast => (
+                  <div className="card" key={breakfast.id}>
+                    <li>
+                      <Breakfast breakfast={breakfast} />
+                    </li>
+                  </div>
+                ))
+              : 'no breakfast'}
+          </div>
         </ul>
+        <div className="sidebar">
+          <Cart breakfasts={this.props.breakfasts} />
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  breakfasts: state.allBreakfasts
+  breakfasts: state.breakfast.allBreakfasts
 })
 
 const mapDispatchToProps = dispatch => ({

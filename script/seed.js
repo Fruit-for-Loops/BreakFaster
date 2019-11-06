@@ -26,14 +26,7 @@ async function seed() {
       firstName: 'Andi',
       lastName: 'Plummer',
       isAdmin: true,
-      email: 'andiplummer@gmail.com',
-      password: '1234'
-    }),
-    User.create({
-      firstName: 'Jenna',
-      lastName: 'Waltuch',
-      isAdmin: true,
-      email: 'jennawaltuch@gmail.com',
+      email: 'andrea@andreaplummer.com',
       password: '1234'
     })
   ])
@@ -97,12 +90,12 @@ async function seed() {
     Cart.create({
       items: [3, 3, 4],
       purchased: new Date(),
-      userId: 3
+      userId: 1
     }),
     Cart.create({
-      items: [2],
-      purchased: null,
-      userId: 4
+      items: [2, 2, 1, 1, 1, 1],
+      purchased: new Date(),
+      userId: 3
     })
   ])
   console.log(
