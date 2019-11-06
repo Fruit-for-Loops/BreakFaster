@@ -36,6 +36,7 @@ async function seed() {
       password: '1234'
     })
   ])
+
   const addresses = await Promise.all([
     Address.create({
       line1: '123 main st',
@@ -57,7 +58,10 @@ async function seed() {
       name: 'Full English Breakfast',
       price: 1599,
       stock: 100,
-      description: 'Ya got eggs, sausage, baked beans, some other stuff'
+      description:
+        "This hearty English breakfast comes chock full of good stuff. You'll enjoy bacon, fried eggs, sausage, mushrooms, baked beans, toast, and grilled tomatoes.",
+      pictureUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Englishbreakfast.jpg/220px-Englishbreakfast.jpg'
     }),
     Breakfast.create({
       name: 'Tofu Scramble Slam',
@@ -69,14 +73,14 @@ async function seed() {
     }),
     Breakfast.create({
       name: 'Cereal',
-      price: 5.99,
+      price: 599,
       stock: 100,
       description: 'Just cheerios in milk.',
       tags: ['vegetarian']
     }),
     Breakfast.create({
       name: 'Gluten Free Pancake Slam',
-      price: 12.99,
+      price: 1299,
       stock: 100,
       description:
         'This gluten free breakfast includes pancakes, eggs, hash browns, and sausage.'
