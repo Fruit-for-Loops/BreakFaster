@@ -3,12 +3,14 @@ import {connect} from 'react-redux'
 import {me} from '../store/user'
 import {getCart} from '../store/cart'
 import {getSingleBreakfast} from '../store/breakfast'
+import CartBadge from './cartBadge.js'
 
 const Cart = props => {
   console.log('PROPS', props)
   return (
     <div>
       <h1>Cart</h1>
+      <CartBadge />
       {props.user.cart
         ? props.user.cart.items.map(item => {
             return (
