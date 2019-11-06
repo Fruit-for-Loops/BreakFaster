@@ -19,6 +19,13 @@ async function seed() {
       lastName: 'King',
       isAdmin: true,
       email: 'alexaking@gmail.com'
+    }),
+    User.create({
+      firstName: 'Andi',
+      lastName: 'Plummer',
+      isAdmin: true,
+      email: 'andrea@andreaplummer.com',
+      password: '1234'
     })
   ])
 
@@ -65,6 +72,11 @@ async function seed() {
       items: [2, 2, 1, 1, 1, 1],
       purchased: new Date(),
       userId: 1
+    }),
+    Cart.create({
+      items: [2, 2, 1, 1, 1, 1],
+      purchased: new Date(),
+      userId: 3
     })
   ])
   console.log(
