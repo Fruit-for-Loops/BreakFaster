@@ -69,14 +69,14 @@ async function seed() {
     }),
     Breakfast.create({
       name: 'Cereal',
-      price: 5.99,
+      price: 500,
       stock: 100,
       description: 'Just cheerios in milk.',
       tags: ['vegetarian']
     }),
     Breakfast.create({
       name: 'Gluten Free Pancake Slam',
-      price: 12.99,
+      price: 1200,
       stock: 100,
       description:
         'This gluten free breakfast includes pancakes, eggs, hash browns, and sausage.'
