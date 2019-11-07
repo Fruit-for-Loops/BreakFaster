@@ -26,9 +26,13 @@ class Breakfast extends React.Component {
     this.props.addToCartThunk(this.props.breakfast)
   }
 
-  handleClick = () => {
-    console.log('CART: ', this.props.cart)
-  }
+  // handleClick = () => {
+  //   console.log('CART: ', this.props.cart)
+  //   if (this.props.cart.includes() === this.props.){
+
+  //   }
+  // }
+
   render() {
     return (
       <div className="breakfastItem">
@@ -48,7 +52,7 @@ class Breakfast extends React.Component {
                 the bulk of the card's content.
               </CardText>
             </CardBody>
-            <Button color="primary" onClick={this.handleClick}>
+            <Button color="primary" onClick={this.addCart}>
               Add to Cart
             </Button>
           </Card>
