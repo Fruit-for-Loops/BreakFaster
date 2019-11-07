@@ -42,7 +42,7 @@ describe('All Breakfasts', () => {
     )
   })
 
-  xit('renders a list item for each breakfast item in state', () => {
-    expect(breakfasts.render().find('li').length).to.be.equal(2)
-  })
+  // xit('renders a list item for each breakfast item in state', () => {
+  //   expect(breakfasts.render().find('li').length).to.be.equal(2)
+  // })
 })

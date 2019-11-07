@@ -50,24 +50,24 @@ describe('thunk creators', () => {
   })
 
   describe('Cart functions', () => {
-    xit('adds a new item to the cart', async () => {
-      mockAxios.onGet('/api/carts').replyOnce(200, currentCart)
-      mockAxios.onPost('/api/carts', 1).replyOnce(201)
-      await store.dispatch(addItemToCart(1))
-      let state = store.getState()
-      const actions = store.getActions()
-      expect(actions[0].type).to.be.equal('ADD_TO_CART')
-      expect(state.cart).to.be.equal(currentCart)
-    })
+    //   xit('adds a new item to the cart', async () => {
+    //     mockAxios.onGet('/api/carts').replyOnce(200, currentCart)
+    //     mockAxios.onPost('/api/carts', 1).replyOnce(201)
+    //     await store.dispatch(addItemToCart(1))
+    //     let state = store.getState()
+    //     const actions = store.getActions()
+    //     expect(actions[0].type).to.be.equal('ADD_TO_CART')
+    //     expect(state.cart).to.be.equal(currentCart)
+    //   })
 
-    xit('gets items from a cart', async () => {
-      mockAxios.onGet('/api/carts').replyOnce(200, currentCart)
-      await store.dispatch(getCart())
-      let state = store.getState()
-      const actions = store.getActions()
-      expect(actions[0].type).to.be.equal('GOT_CART')
-      expect(state.cart).to.be.equal(currentCart)
-    })
+    // xit('gets items from a cart', async () => {
+    //   mockAxios.onGet('/api/carts').replyOnce(200, currentCart)
+    //   await store.dispatch(getCart())
+    //   let state = store.getState()
+    //   const actions = store.getActions()
+    //   expect(actions[0].type).to.be.equal('GOT_CART')
+    //   expect(state.cart).to.be.equal(currentCart)
+    // })
 
     it('eventually dispatches the UPDATED QUANTITY action', async () => {
       mockAxios.onPut('/api/carts/increase').replyOnce(204)
@@ -83,16 +83,16 @@ describe('thunk creators', () => {
       expect(actions[0].type).to.be.equal('UPDATED_QUANTITY')
     })
 
-    xit('removes an item from the cart', async () => {
-      mockAxios.onGet('/api/carts').reply(200, currentCart)
-      await store.dispatch(getCart())
-      let state = store.getState()
-      let cartLength = state.cart.length
-      mockAxios.onDelete('/api/carts', 1).replyOnce(204)
-      await store.dispatch(removeItemFromCart(1))
-      state = store.getState()
-      const newCartLength = state.cart.length
-      expect(newCartLength).to.be.equal(cartLength - 1)
-    })
+    // xit('removes an item from the cart', async () => {
+    //   mockAxios.onGet('/api/carts').reply(200, currentCart)
+    //   await store.dispatch(getCart())
+    //   let state = store.getState()
+    //   let cartLength = state.cart.length
+    //   mockAxios.onDelete('/api/carts', 1).replyOnce(204)
+    //   await store.dispatch(removeItemFromCart(1))
+    //   state = store.getState()
+    //   const newCartLength = state.cart.length
+    //   expect(newCartLength).to.be.equal(cartLength - 1)
+    // })
   })
 })
