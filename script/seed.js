@@ -77,7 +77,7 @@ async function seed() {
       userId: 1
     }),
     Cart.create({
-      purchased: new Date(),
+      purchased: null,
       userId: 2
     }),
     Cart.create({
@@ -97,7 +97,7 @@ async function seed() {
       quantity: 2,
       currentPrice: 1099,
       breakfastId: 2,
-      cartId: 3
+      cartId: 2
     })
   ])
   console.log(
