@@ -6,15 +6,19 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   const cartSessionId = req.session.cartId
+  console.log(cartSessionId)
   try {
     if (!cartSessionId) {
       let newCart
       if (req.user) {
         newCart = await Cart.findOrCreate({
-          userId: req.user.id
+          userId: req.user.id,
+          purchased: null
         })
+        console.log('user found', newCart)
       } else {
         newCart = await Cart.create({})
+        console.log('no user', newCart)
       }
       req.session.cartId = newCart.id
       const breakfasts = await newCart.getBreakfasts()
@@ -22,6 +26,7 @@ router.get('/', async (req, res, next) => {
       res.json(breakfasts)
     } else {
       const currentCart = await Cart.findByPk(cartSessionId)
+      console.log('current cart', currentCart)
       const breakfasts = await currentCart.getBreakfasts()
       console.log('BREAKFASTS:', breakfasts)
       res.json(breakfasts)
