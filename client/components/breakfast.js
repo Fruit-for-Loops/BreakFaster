@@ -25,6 +25,10 @@ class Breakfast extends React.Component {
     event.preventDefault()
     this.props.addToCartThunk(this.props.breakfast)
   }
+
+  handleClick = () => {
+    console.log('CART: ', this.props.cart)
+  }
   render() {
     return (
       <div className="breakfastItem">
@@ -44,7 +48,7 @@ class Breakfast extends React.Component {
                 the bulk of the card's content.
               </CardText>
             </CardBody>
-            <Button color="primary" onClick={this.addCart}>
+            <Button color="primary" onClick={this.handleClick}>
               Add to Cart
             </Button>
           </Card>
@@ -66,6 +70,6 @@ const mapDispatchToProps = dispatch => ({
   addToCartThunk: breakfastId => dispatch(addToCart(breakfastId))
 })
 
-export default connect(null, mapDispatchToProps)(Breakfast)
+export default connect(mapStateToProps, mapDispatchToProps)(Breakfast)
 
 // export default Breakfast
