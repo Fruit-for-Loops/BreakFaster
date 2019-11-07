@@ -1,38 +1,54 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addToCart} from '../store'
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button
+} from 'reactstrap'
+
+const addCart = event => {
+  event.preventDefault()
+  addToCartThunk(event.target.id)
+}
 
 export const Breakfast = props => {
-  console.log('BREAKFAST', props.breakfast)
   return (
     <div className="breakfastItem">
-      <img src={props.breakfast.pictureUrl} />
-      <p>{props.breakfast.name}</p>
-      <p>{props.breakfast.description}</p>
-      <p>
-        ${
-          (props.breakfast.price.toString().slice(0, 2) +
-            '.' +
-            props.breakfast.price.toString,
-          slice(2))
-        }
-      </p>
-      <button>Add to cart</button>
+      <div>
+        <Card className="text-left">
+          <CardImg
+            top
+            width="150px"
+            src={props.breakfast.pictureUrl}
+            alt="Card image cap"
+          />
+          <CardBody className="cardBody">
+            <CardTitle>{props.breakfast.name}</CardTitle>
+            <CardSubtitle>${props.breakfast.price}</CardSubtitle>
+            <CardText>
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </CardText>
+          </CardBody>
+          <Button color="primary">Add to Cart</Button>
+        </Card>
+      </div>
     </div>
   )
 }
-
 // const mapStateToProps = state => {
 //   return {
 //     user: state.user,
 //     cart: state.cart
 //   }
 // }
-
 // const mapDispatchToProps = dispatch => ({
 //   addToCartThunk: (breakfastId) => dispatch(addToCart(breakfastId))
 // })
-
 // export default connect(null, mapDispatchToProps)(Breakfast)
-
-export default Breakfast
+// export default Breakfast

@@ -3,11 +3,40 @@ import {connect} from 'react-redux'
 import {me} from '../store/user'
 import {getCart} from '../store/cart'
 import {getSingleBreakfast} from '../store/breakfast'
+import CartBadge from './cartBadge.js'
+import QuantifyItems from './quantifyItems'
+import bootstrapShoppingCart from './bootstrapShoppingCart'
 
 const Cart = props => {
+  console.log('PROPS', props)
   return (
     <div>
       <h1>Cart</h1>
+      <CartBadge />
+      <div className="itemInCart">
+        <p>Seven burritos</p>
+        <QuantifyItems />
+        {/* <bootstrapShoppingCart /> */}
+        <p>$32.50</p>
+        <img
+          src="./images/Recycle_bin.png"
+          height="25px"
+          id="trash"
+          onClick={console.log('deleted!')}
+        />
+      </div>
+      {/* {props.user.cart
+        ? props.user.cart.items.map(item => {
+            return (
+              <div>
+                <h1>Item name</h1>
+              </div>
+            )
+          })
+        : console.log('rendering')} */}
+      Total: $$$
+      <br />
+      <button className="checkoutBtn">Checkout</button>
     </div>
   )
 }
