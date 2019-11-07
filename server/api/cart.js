@@ -33,6 +33,17 @@ router.post('/', async (req, res, next) => {
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.body.breakfastId)
     await currentCart.addBreakfast(currentBreakfast)
+    await CartItem.update(
+      {
+        currentPrice: currentBreakfast.price
+      },
+      {
+        where: {
+          breakfastId: req.body.breakfastId,
+          cartId: req.session.cartId
+        }
+      }
+    )
     res.sendStatus(201)
   } catch (error) {
     next(error)

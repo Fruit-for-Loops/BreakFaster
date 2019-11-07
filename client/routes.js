@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {AllBreakfasts} from './components'
+import Cart from './components/cart'
 import {me} from './store'
 import Checkout from './components/checkout'
 
@@ -20,6 +21,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/cart" component={Cart} />
         <Route path="/allBreakfasts" component={AllBreakfasts} />
         <Route path="/checkout" component={Checkout} />
         {isLoggedIn && (

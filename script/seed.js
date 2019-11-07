@@ -36,7 +36,6 @@ async function seed() {
       password: '1234'
     })
   ])
-
   const addresses = await Promise.all([
     Address.create({
       line1: '123 main st',
@@ -53,7 +52,6 @@ async function seed() {
       zip: 10005
     })
   ])
-
   const breakfasts = await Promise.all([
     Breakfast.create({
       name: 'Full English Breakfast',
@@ -68,9 +66,22 @@ async function seed() {
       description:
         'This vegan breakfast includes tofu scramble, hash browns, and vegan sausage',
       tags: ['vegetarian', 'vegan']
+    }),
+    Breakfast.create({
+      name: 'Cereal',
+      price: 5.99,
+      stock: 100,
+      description: 'Just cheerios in milk.',
+      tags: ['vegetarian']
+    }),
+    Breakfast.create({
+      name: 'Gluten Free Pancake Slam',
+      price: 12.99,
+      stock: 100,
+      description:
+        'This gluten free breakfast includes pancakes, eggs, hash browns, and sausage.'
     })
   ])
-
   const carts = await Promise.all([
     Cart.create({
       purchased: new Date(),
