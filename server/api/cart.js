@@ -6,31 +6,23 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   const cartSessionId = req.session.cartId
-  console.log(cartSessionId)
   try {
+    let currentCart
     if (!cartSessionId) {
-      let newCart
       if (req.user) {
-        newCart = await Cart.findOrCreate({
+        currentCart = await Cart.findOrCreate({
           userId: req.user.id,
           purchased: null
         })
-        console.log('user found', newCart)
       } else {
-        newCart = await Cart.create({})
-        console.log('no user', newCart)
+        currentCart = await Cart.create({purchased: null})
       }
-      req.session.cartId = newCart.id
-      const breakfasts = await newCart.getBreakfasts()
-      console.log('BREAKFASTS:', breakfasts)
-      res.json(breakfasts)
+      req.session.cartId = currentCart.id
     } else {
-      const currentCart = await Cart.findByPk(cartSessionId)
-      console.log('current cart', currentCart)
-      const breakfasts = await currentCart.getBreakfasts()
-      console.log('BREAKFASTS:', breakfasts)
-      res.json(breakfasts)
+      currentCart = await Cart.findByPk(cartSessionId)
     }
+    const breakfasts = await currentCart.getBreakfasts()
+    res.json(breakfasts)
   } catch (err) {
     next(err)
   }
@@ -41,6 +33,19 @@ router.post('/', async (req, res, next) => {
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.body.breakfastId)
     await currentCart.addBreakfast(currentBreakfast)
+    const currentBreakfastPrice = currentBreakfast.price
+    await Cart.update(
+      {
+        total: Sequelize.literal(`total + ${currentBreakfastPrice}`)
+      },
+      {
+        where: {
+          id: req.session.cartId
+        },
+        returning: true,
+        plain: true
+      }
+    )
     res.sendStatus(201)
   } catch (error) {
     next(error)
@@ -93,7 +98,7 @@ router.delete('/', async (req, res, next) => {
   try {
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.body.breakfastId)
-    await currentCart.remove(currentBreakfast)
+    await currentCart.removeBreakfast(currentBreakfast)
     res.sendStatus(204)
   } catch (error) {
     next(error)
