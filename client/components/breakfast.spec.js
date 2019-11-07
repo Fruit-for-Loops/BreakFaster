@@ -23,17 +23,7 @@ describe('Breakfast', () => {
   })
 
   it('has access to props of breakfast item', () => {
-    expect(
-      breakfast
-        .find('p')
-        .at(0)
-        .text()
-    ).to.be.equal('Cheerios')
-    expect(
-      breakfast
-        .find('p')
-        .at(1)
-        .text()
-    ).to.be.equal('$10')
+    expect(breakfast.find('CardTitle').text()).to.be.equal('Cheerios')
+    expect(breakfast.find('CardSubtitle').text()).to.be.equal('$10')
   })
 })
