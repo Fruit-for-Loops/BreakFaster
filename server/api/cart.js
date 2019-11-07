@@ -7,25 +7,22 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   const cartSessionId = req.session.cartId
   try {
+    let currentCart
     if (!cartSessionId) {
-      let newCart
       if (req.user) {
-        newCart = await Cart.create({
-          userId: req.user.id
+        currentCart = await Cart.findOrCreate({
+          userId: req.user.id,
+          purchased: null
         })
       } else {
-        newCart = await Cart.create({})
+        currentCart = await Cart.create({purchased: null})
       }
-      req.session.cartId = newCart.id
-      const breakfasts = await newCart.getBreakfasts()
-      console.log('BREAKFASTS:', breakfasts)
-      res.json(breakfasts)
+      req.session.cartId = currentCart.id
     } else {
-      const currentCart = await Cart.findByPk(cartSessionId)
-      const breakfasts = await currentCart.getBreakfasts()
-      console.log('BREAKFASTS:', breakfasts)
-      res.json(breakfasts)
+      currentCart = await Cart.findByPk(cartSessionId)
     }
+    const breakfasts = await currentCart.getBreakfasts()
+    res.json(breakfasts)
   } catch (err) {
     next(err)
   }
@@ -88,7 +85,7 @@ router.delete('/', async (req, res, next) => {
   try {
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.body.breakfastId)
-    await currentCart.remove(currentBreakfast)
+    await currentCart.removeBreakfast(currentBreakfast)
     res.sendStatus(204)
   } catch (error) {
     next(error)
