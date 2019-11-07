@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getAllBreakfasts} from '../store'
+import {getAllBreakfasts} from '../store/breakfast'
+import {getCart} from '../store/cart'
 import {Breakfast} from './breakfast'
 import Cart from './cart'
 import Filters from './filters'
-import {getCart} from '../store/cart'
 // import Breakfast from './Breakfast';
 
 class AllBreakfasts extends React.Component {
@@ -42,7 +42,8 @@ class AllBreakfasts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  breakfasts: state.breakfast.allBreakfasts
+  breakfasts: state.breakfast.allBreakfasts,
+  cart: state.cart.cart
 })
 
 const mapDispatchToProps = dispatch => ({

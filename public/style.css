@@ -167,6 +167,7 @@ nav h1 {
 .breakfastItem {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   height: 300px;
 }
 
@@ -217,10 +218,12 @@ nav h1 {
   height: 15px;
   text-align: center;
 }
+
 input.qtyplus {
   width: 15px;
   height: 15px;
 }
+
 input.qtyminus {
   width: 15px;
   height: 15px;
