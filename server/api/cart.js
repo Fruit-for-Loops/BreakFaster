@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
     if (!cartSessionId) {
       let newCart
       if (req.user) {
-        newCart = await Cart.create({
+        newCart = await Cart.findOrCreate({
           userId: req.user.id
         })
       } else {
