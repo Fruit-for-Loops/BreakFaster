@@ -33,19 +33,6 @@ router.post('/', async (req, res, next) => {
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.body.breakfastId)
     await currentCart.addBreakfast(currentBreakfast)
-    const currentBreakfastPrice = currentBreakfast.price
-    await Cart.update(
-      {
-        total: Sequelize.literal(`total + ${currentBreakfastPrice}`)
-      },
-      {
-        where: {
-          id: req.session.cartId
-        },
-        returning: true,
-        plain: true
-      }
-    )
     res.sendStatus(201)
   } catch (error) {
     next(error)
