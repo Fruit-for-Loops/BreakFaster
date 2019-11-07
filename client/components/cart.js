@@ -5,7 +5,6 @@ import {getCart} from '../store/cart'
 import {getSingleBreakfast} from '../store/breakfast'
 import CartBadge from './cartBadge.js'
 import QuantifyItems from './quantifyItems'
-import bootstrapShoppingCart from './bootstrapShoppingCart'
 
 const Cart = props => {
   console.log('PROPS', props)
@@ -14,18 +13,12 @@ const Cart = props => {
       <h1>Cart</h1>
       <CartBadge />
       <div className="itemInCart">
-        <p>Seven burritos</p>
-        <QuantifyItems />
-        {/* <bootstrapShoppingCart /> */}
+        <p>burritos</p>
+        {/* <QuantifyItems /> */}
         <p>$32.50</p>
-        <img
-          src="./images/Recycle_bin.png"
-          height="25px"
-          id="trash"
-          onClick={console.log('deleted!')}
-        />
+        <img src="./images/Recycle_bin.png" height="25px" id="trash" />
       </div>
-      {/* {props.user.cart
+      {props.user.cart
         ? props.user.cart.items.map(item => {
             return (
               <div>
@@ -33,7 +26,7 @@ const Cart = props => {
               </div>
             )
           })
-        : console.log('rendering')} */}
+        : console.log('rendering', props)}
       Total: $$$
       <br />
       <button className="checkoutBtn">Checkout</button>
