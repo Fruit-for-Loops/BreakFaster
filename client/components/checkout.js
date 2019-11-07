@@ -3,11 +3,6 @@ import AddressInput from './address-input'
 import {createOrder} from '../store/order'
 import {connect} from 'react-redux'
 
-const PAYMENT_SERVER_URL =
-  process.env.NODE_ENV === 'production'
-    ? 'https://breakfaster.herokuapp.com/'
-    : 'http://localhost:8080'
-
 class Checkout extends Component {
   constructor(props) {
     super(props)
