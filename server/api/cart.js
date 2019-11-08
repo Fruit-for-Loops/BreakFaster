@@ -52,6 +52,8 @@ router.post('/', async (req, res, next) => {
 
 router.put('/increase', async (req, res, next) => {
   try {
+    console.log('req.body:', req.body)
+    console.log('req.session:', req.session)
     await CartItem.update(
       {
         quantity: Sequelize.literal('quantity + 1')
@@ -79,7 +81,7 @@ router.put('/decrease', async (req, res, next) => {
       },
       {
         where: {
-          breakfastId: req.body.breakfastId,
+          breakfastId: req.body.id,
           cartId: req.session.cartId
         },
         returning: true,
@@ -95,7 +97,7 @@ router.put('/decrease', async (req, res, next) => {
 router.delete('/', async (req, res, next) => {
   try {
     const currentCart = await Cart.findByPk(req.session.cartId)
-    const currentBreakfast = await Breakfast.findByPk(req.body.breakfastId)
+    const currentBreakfast = await Breakfast.findByPk(req.body.id)
     await currentCart.removeBreakfast(currentBreakfast)
     res.sendStatus(204)
   } catch (error) {

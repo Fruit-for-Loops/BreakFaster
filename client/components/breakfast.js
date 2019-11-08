@@ -1,6 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addToCart, getCart, increaseQuantity} from '../store'
+import {
+  addToCart,
+  getCart,
+  increaseQuantity,
+  removeItemFromCart,
+  decreaseQuantity
+} from '../store'
 import {
   Card,
   CardImg,
@@ -39,6 +45,8 @@ class Breakfast extends React.Component {
   }
 
   handleClick = () => {
+    console.log('props.breakfast:', this.props.breakfast)
+    console.log('containsItem:', this.containsItem(this.props.breakfast.id))
     event.preventDefault()
     if (this.containsItem(this.props.breakfast.id)) {
       this.props.increaseQuantityThunk(this.props.breakfast)
@@ -47,7 +55,18 @@ class Breakfast extends React.Component {
     }
   }
 
+  handleDelete = () => {
+    event.preventDefault()
+    this.props.removeItemThunk(this.props.breakfast)
+  }
+
+  handleDecrease = () => {
+    event.preventDefault()
+    this.props.decreaseQuantityThunk(this.props.breakfast)
+  }
+
   render() {
+    console.log(this.props)
     return (
       <div className="breakfastItem">
         <div>
@@ -69,6 +88,8 @@ class Breakfast extends React.Component {
             <Button color="primary" onClick={this.handleClick}>
               Add to Cart
             </Button>
+            <Button onClick={this.handleDelete}>Delete</Button>
+            <Button onClick={this.handleDecrease}>Decrease</Button>
           </Card>
         </div>
       </div>
@@ -85,8 +106,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getCartThunk: () => dispatch(getCart()),
-  addToCartThunk: breakfastId => dispatch(addToCart(breakfastId)),
-  increaseQuantityThunk: breakfastId => dispatch(increaseQuantity(breakfastId))
+  addToCartThunk: breakfast => dispatch(addToCart(breakfast)),
+  increaseQuantityThunk: breakfast => dispatch(increaseQuantity(breakfast)),
+  decreaseQuantityThunk: breakfast => dispatch(decreaseQuantity(breakfast)),
+  removeItemThunk: breakfast => dispatch(removeItemFromCart(breakfast))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Breakfast)
