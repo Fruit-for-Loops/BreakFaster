@@ -58,7 +58,7 @@ router.put('/increase', async (req, res, next) => {
       },
       {
         where: {
-          breakfastId: req.body.breakfastId,
+          breakfastId: req.body.id,
           cartId: req.session.cartId
         },
         returning: true,
