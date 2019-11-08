@@ -16,9 +16,6 @@ const UPDATED_QUANTITY = 'UPDATED_QUANTITY'
  * ACTION CREATORS
  */
 const gotCart = cart => ({type: GOT_CART, cart})
-const addToCart = cart => ({type: ADD_TO_CART, cart})
-const removeFromCart = breakfastId => ({type: REMOVE_FROM_CART, breakfastId})
-const updatedQuantity = breakfast => ({type: UPDATED_QUANTITY, breakfast})
 /**
  * THUNK CREATORS
  */
@@ -31,47 +28,51 @@ export const getCart = () => async dispatch => {
   }
 }
 
-export const addItemToCart = breakfastId => async dispatch => {
+export const addToCart = breakfast => async dispatch => {
   try {
-    const {data} = await axios.post('/api/carts', breakfastId)
-    dispatch(addToCart(data))
+    await axios.post('/api/carts', breakfast)
+    const {data} = await axios.get('/api/carts')
+    dispatch(gotCart(data))
   } catch (error) {
     console.log(error)
   }
 }
 
-export const removeItemFromCart = breakfastId => async dispatch => {
+export const removeItemFromCart = breakfast => async dispatch => {
   try {
-    await axios.delete('/api/carts', breakfastId)
-    dispatch(getCart())
+    console.log('breakfast:', breakfast)
+    await axios.delete(`/api/carts/${breakfast.id}`)
+    const {data} = await axios.get('/api/carts')
+    dispatch(gotCart(data))
   } catch (error) {
     console.log(error)
   }
 }
 
-export const increaseQuantity = breakfastId => async dispatch => {
-  const {data} = await axios.put(`/api/carts/increase`, breakfastId)
-  dispatch(updatedQuantity(data))
+export const increaseQuantity = breakfast => async dispatch => {
+  await axios.put(`/api/carts/increase`, breakfast)
+  const {data} = await axios.get('/api/carts')
+  dispatch(gotCart(data))
 }
 
-export const decreaseQuantity = breakfastId => async dispatch => {
-  const {data} = await axios.put(`/api/carts/decrease`, breakfastId)
-  dispatch(updatedQuantity(data))
+export const decreaseQuantity = breakfast => async dispatch => {
+  await axios.put(`/api/carts/decrease`, breakfast)
+  const {data} = await axios.get('/api/carts')
+  dispatch(gotCart(data))
 }
 
+const initialState = {
+  cart: []
+}
 /**
  * REDUCER
  */
 // NEED TO UPDATE ONCE BACKEND WRITTEN
-export default function(cart = [], action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_CART:
-      return action.cart
-    case ADD_TO_CART:
-      return action.cart
-    case UPDATED_QUANTITY:
-      return cart
+      return {...state, cart: action.cart}
     default:
-      return cart
+      return state
   }
 }

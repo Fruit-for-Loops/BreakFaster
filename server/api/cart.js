@@ -31,7 +31,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const currentCart = await Cart.findByPk(req.session.cartId)
-    const currentBreakfast = await Breakfast.findByPk(req.body.breakfastId)
+    const currentBreakfast = await Breakfast.findByPk(req.body.id)
     await currentCart.addBreakfast(currentBreakfast)
     await CartItem.update(
       {
@@ -39,7 +39,7 @@ router.post('/', async (req, res, next) => {
       },
       {
         where: {
-          breakfastId: req.body.breakfastId,
+          breakfastId: req.body.id,
           cartId: req.session.cartId
         }
       }
@@ -58,7 +58,7 @@ router.put('/increase', async (req, res, next) => {
       },
       {
         where: {
-          breakfastId: req.body.breakfastId,
+          breakfastId: req.body.id,
           cartId: req.session.cartId
         },
         returning: true,
@@ -79,7 +79,7 @@ router.put('/decrease', async (req, res, next) => {
       },
       {
         where: {
-          breakfastId: req.body.breakfastId,
+          breakfastId: req.body.id,
           cartId: req.session.cartId
         },
         returning: true,
@@ -92,10 +92,10 @@ router.put('/decrease', async (req, res, next) => {
   }
 })
 
-router.delete('/', async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const currentCart = await Cart.findByPk(req.session.cartId)
-    const currentBreakfast = await Breakfast.findByPk(req.body.breakfastId)
+    const currentBreakfast = await Breakfast.findByPk(req.params.id)
     await currentCart.removeBreakfast(currentBreakfast)
     res.sendStatus(204)
   } catch (error) {
