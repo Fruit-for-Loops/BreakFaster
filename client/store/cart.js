@@ -40,7 +40,8 @@ export const addToCart = breakfast => async dispatch => {
 
 export const removeItemFromCart = breakfast => async dispatch => {
   try {
-    await axios.delete('/api/carts', breakfast)
+    console.log('breakfast:', breakfast)
+    await axios.delete(`/api/carts/${breakfast.id}`)
     const {data} = await axios.get('/api/carts')
     dispatch(gotCart(data))
   } catch (error) {

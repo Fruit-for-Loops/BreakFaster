@@ -6,24 +6,7 @@ import {getSingleBreakfast} from '../store/breakfast'
 import CartBadge from './cartBadge.js'
 import QuantifyItems from './quantifyItems'
 
-// class Cart extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     this.addCart = this.addCart.bind(this)
-//   }
-//   componentDidMount() {
-//     console.log('breakfast: ', this.props.breakfast)
-//     this.props.getCartThunk()
-//   }
-
-//   addCart = () => {
-//     event.preventDefault()
-//     this.props.addToCartThunk(this.props.breakfast)
-//   }
-//   render() {
-
 const Cart = props => {
-  // console.log('PROPS', props)
   return (
     <div>
       <h1>Cart</h1>

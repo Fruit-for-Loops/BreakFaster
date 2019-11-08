@@ -45,8 +45,6 @@ class Breakfast extends React.Component {
   }
 
   handleClick = () => {
-    console.log('props.breakfast:', this.props.breakfast)
-    console.log('containsItem:', this.containsItem(this.props.breakfast.id))
     event.preventDefault()
     if (this.containsItem(this.props.breakfast.id)) {
       this.props.increaseQuantityThunk(this.props.breakfast)
@@ -66,7 +64,6 @@ class Breakfast extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="breakfastItem">
         <div>
