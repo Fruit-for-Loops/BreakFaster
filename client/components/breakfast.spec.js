@@ -10,7 +10,7 @@ import {Breakfast} from './breakfast'
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
-describe('Breakfast', () => {
+xdescribe('Breakfast', () => {
   let breakfast
   let breakfastData = {
     name: 'Cheerios',
