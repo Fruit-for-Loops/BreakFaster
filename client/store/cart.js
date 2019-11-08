@@ -16,9 +16,6 @@ const UPDATED_QUANTITY = 'UPDATED_QUANTITY'
  * ACTION CREATORS
  */
 const gotCart = cart => ({type: GOT_CART, cart})
-const addedToCart = cart => ({type: ADD_TO_CART, cart})
-const removeFromCart = breakfastId => ({type: REMOVE_FROM_CART, breakfastId})
-const updatedQuantity = breakfast => ({type: UPDATED_QUANTITY, breakfast})
 /**
  * THUNK CREATORS
  */
@@ -31,9 +28,9 @@ export const getCart = () => async dispatch => {
   }
 }
 
-export const addToCart = breakfastId => async dispatch => {
+export const addToCart = breakfast => async dispatch => {
   try {
-    await axios.post('/api/carts', breakfastId)
+    await axios.post('/api/carts', breakfast)
     const {data} = await axios.get('/api/carts')
     dispatch(gotCart(data))
   } catch (error) {
@@ -41,9 +38,10 @@ export const addToCart = breakfastId => async dispatch => {
   }
 }
 
-export const removeItemFromCart = breakfastId => async dispatch => {
+export const removeItemFromCart = breakfast => async dispatch => {
   try {
-    await axios.delete('/api/carts', breakfastId)
+    console.log('breakfast:', breakfast)
+    await axios.delete(`/api/carts/${breakfast.id}`)
     const {data} = await axios.get('/api/carts')
     dispatch(gotCart(data))
   } catch (error) {
@@ -51,14 +49,14 @@ export const removeItemFromCart = breakfastId => async dispatch => {
   }
 }
 
-export const increaseQuantity = breakfastId => async dispatch => {
-  await axios.put(`/api/carts/increase`, breakfastId)
+export const increaseQuantity = breakfast => async dispatch => {
+  await axios.put(`/api/carts/increase`, breakfast)
   const {data} = await axios.get('/api/carts')
   dispatch(gotCart(data))
 }
 
-export const decreaseQuantity = breakfastId => async dispatch => {
-  await axios.put(`/api/carts/decrease`, breakfastId)
+export const decreaseQuantity = breakfast => async dispatch => {
+  await axios.put(`/api/carts/decrease`, breakfast)
   const {data} = await axios.get('/api/carts')
   dispatch(gotCart(data))
 }

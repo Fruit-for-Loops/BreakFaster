@@ -7,7 +7,6 @@ import CartBadge from './cartBadge.js'
 import QuantifyItems from './quantifyItems'
 
 const Cart = props => {
-  console.log('PROPS', props)
   return (
     <div>
       <h1>Cart</h1>
