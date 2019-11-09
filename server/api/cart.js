@@ -37,7 +37,6 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.session.cartId)
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.body.id)
     await currentCart.addBreakfast(currentBreakfast)
