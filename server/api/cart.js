@@ -11,9 +11,14 @@ router.get('/', async (req, res, next) => {
     if (!cartSessionId) {
       if (req.user) {
         currentCart = await Cart.findOrCreate({
-          userId: req.user.id,
-          purchased: null
+          where: {
+            userId: req.user.id,
+            purchased: null
+          }
         })
+        if (currentCart[0].id) {
+          currentCart = currentCart[0]
+        }
       } else {
         currentCart = await Cart.create({purchased: null})
       }
@@ -21,7 +26,9 @@ router.get('/', async (req, res, next) => {
     } else {
       currentCart = await Cart.findByPk(cartSessionId)
     }
-    const breakfasts = await currentCart.getBreakfasts()
+    const breakfasts = await currentCart.getBreakfasts({
+      order: CartItem.createdAt
+    })
     res.json(breakfasts)
   } catch (err) {
     next(err)
@@ -30,6 +37,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log(req.session.cartId)
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.body.id)
     await currentCart.addBreakfast(currentBreakfast)
