@@ -1,12 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {
-  addToCart,
-  getCart,
-  increaseQuantity,
-  removeItemFromCart,
-  decreaseQuantity
-} from '../store'
+import {addToCart, getCart, increaseQuantity} from '../store'
 import {
   Card,
   CardImg,
@@ -53,16 +47,6 @@ class Breakfast extends React.Component {
     }
   }
 
-  handleDelete = () => {
-    event.preventDefault()
-    this.props.removeItemThunk(this.props.breakfast)
-  }
-
-  handleDecrease = () => {
-    event.preventDefault()
-    this.props.decreaseQuantityThunk(this.props.breakfast)
-  }
-
   render() {
     return (
       <div className="breakfastItem">
@@ -76,7 +60,9 @@ class Breakfast extends React.Component {
             />
             <CardBody className="cardBody">
               <CardTitle>{this.props.breakfast.name}</CardTitle>
-              <CardSubtitle>${this.props.breakfast.price}</CardSubtitle>
+              <CardSubtitle>
+                ${(this.props.breakfast.price / 100).toFixed(2)}
+              </CardSubtitle>
               <CardText>
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
@@ -85,8 +71,6 @@ class Breakfast extends React.Component {
             <Button color="primary" onClick={this.handleClick}>
               Add to Cart
             </Button>
-            <Button onClick={this.handleDelete}>Delete</Button>
-            <Button onClick={this.handleDecrease}>Decrease</Button>
           </Card>
         </div>
       </div>
@@ -104,11 +88,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   getCartThunk: () => dispatch(getCart()),
   addToCartThunk: breakfast => dispatch(addToCart(breakfast)),
-  increaseQuantityThunk: breakfast => dispatch(increaseQuantity(breakfast)),
-  decreaseQuantityThunk: breakfast => dispatch(decreaseQuantity(breakfast)),
-  removeItemThunk: breakfast => dispatch(removeItemFromCart(breakfast))
+  increaseQuantityThunk: breakfast => dispatch(increaseQuantity(breakfast))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Breakfast)
-
-// export default Breakfast
