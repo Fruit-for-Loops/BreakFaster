@@ -24,6 +24,7 @@ class Cart extends React.Component {
   }
 
   routeToCheckout() {
+    console.log(this.props.history)
     this.props.history.push('/checkout')
   }
 
@@ -42,9 +43,14 @@ class Cart extends React.Component {
           </table>
         </div>
         Total: ${(total / 100).toFixed(2)}
-        <button className="checkoutBtn" onClick={() => this.routeToCheckout()}>
-          Checkout
-        </button>
+        {this.props.location.pathname === '/checkout' || (
+          <button
+            className="checkoutBtn"
+            onClick={() => this.routeToCheckout()}
+          >
+            Checkout
+          </button>
+        )}
       </div>
     )
   }
