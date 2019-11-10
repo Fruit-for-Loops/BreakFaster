@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 import {
   getCart,
   removeItemFromCart,
@@ -10,12 +11,20 @@ import {getSingleBreakfast} from '../store/breakfast'
 import ItemInCart from './itemInCart'
 
 class Cart extends React.Component {
+  constructor(props) {
+    super(props)
+    this.routeToCheckout = this.routeToCheckout.bind(this)
+  }
   findTotal(cart) {
     let sum = 0
     cart.forEach(item => {
       sum += item.price * item.cartItem.quantity
     })
     return sum
+  }
+
+  routeToCheckout() {
+    this.props.history.push('/checkout')
   }
 
   render() {
@@ -33,7 +42,9 @@ class Cart extends React.Component {
           </table>
         </div>
         Total: ${(total / 100).toFixed(2)}
-        <button className="checkoutBtn">Checkout</button>
+        <button className="checkoutBtn" onClick={() => this.routeToCheckout()}>
+          Checkout
+        </button>
       </div>
     )
   }
@@ -54,4 +65,4 @@ const mapDispatchToProps = dispatch => ({
   removeItemThunk: breakfast => dispatch(removeItemFromCart(breakfast))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cart))
