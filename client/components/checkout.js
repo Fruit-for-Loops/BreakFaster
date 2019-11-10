@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import AddressInput from './address-input'
 import {createOrder} from '../store/order'
+import Cart from './cart'
 import {connect} from 'react-redux'
 
 class Checkout extends Component {
@@ -55,6 +56,7 @@ class Checkout extends Component {
       <div>
         <h1>Checkout</h1>
         <h2>Order Summary</h2>
+        <Cart />
         {/* Display order summary and total (items, quantity, price, subtotal, total) */}
         <form onSubmit={() => this.handleSubmit(event)}>
           {/* <label htmlFor="shipping-address">Shipping Address:</label>
