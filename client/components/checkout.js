@@ -9,7 +9,7 @@ class Checkout extends Component {
   constructor(props) {
     super(props)
     this.makePurchase = this.makePurchase.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   makePurchase(cartId) {
@@ -17,11 +17,11 @@ class Checkout extends Component {
     this.props.updateStockThunk()
   }
 
-  // handleSubmit(event) {
-  //   event.preventDefault()
-  //   this.props.createOrder(order)
-  //   console.log('submit')
-  // }
+  handleSubmit(event) {
+    event.preventDefault()
+    this.props.createOrder(order)
+    console.log('submit')
+  }
 
   render() {
     return (
@@ -31,7 +31,7 @@ class Checkout extends Component {
         <Cart />
         {/* Display order summary and total (items, quantity, price, subtotal, total) */}
         {/* <form onSubmit={() => this.handleSubmit(event)}> */}
-        <form>
+        <form onSubmit={this.handleSubmit}>
           {/* Credit Card Info Stripe Component?*/}
           {/* It appears that with Express Stripe they enter their credit card info with Stripe */}
           <button
