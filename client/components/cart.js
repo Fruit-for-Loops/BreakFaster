@@ -41,7 +41,7 @@ class Cart extends React.Component {
           </table>
         </div>
         Total: ${(total / 100).toFixed(2)}
-        {this.props.location.pathname === '/checkout:cartId' || (
+        {this.props.location.pathname.includes('/checkout') || (
           <button
             type="button"
             className="checkoutBtn"

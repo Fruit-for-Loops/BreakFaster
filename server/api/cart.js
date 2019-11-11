@@ -25,12 +25,6 @@ router.get('/', async (req, res, next) => {
       req.session.cartId = currentCart.id
     } else {
       currentCart = await Cart.findByPk(cartSessionId)
-      // Andi and Katey added - check if current cart in session was purchased
-      //   // if purchased, create a new cart w purchased = null
-      if (currentCart.purchased !== null) {
-        currentCart = await Cart.create({purchased: null})
-        req.session.cartId = currentCart.id
-      }
     }
     const breakfasts = await currentCart.getBreakfasts({
       order: CartItem.createdAt
@@ -116,6 +110,7 @@ router.put('/:cartId', async (req, res, next) => {
         where: {id: cartId}
       }
     )
+    req.session.cartId = null
     res.sendStatus(200)
   } catch (error) {
     next(error)
