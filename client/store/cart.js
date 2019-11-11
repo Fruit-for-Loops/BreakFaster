@@ -82,18 +82,19 @@ export const increaseQuantity = breakfast => async dispatch => {
 }
 
 export const decreaseQuantity = breakfast => async dispatch => {
-  await axios.put(`/api/carts/decrease`, breakfast)
-  const {data} = await axios.get('/api/carts')
-  dispatch(gotCart(data))
+  try {
+    await axios.put(`/api/carts/decrease`, breakfast)
+    const {data} = await axios.get('/api/carts')
+    dispatch(gotCart(data))
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const initialState = {
   cart: []
 }
-/**
- * REDUCER
- */
-// NEED TO UPDATE ONCE BACKEND WRITTEN
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_CART:
