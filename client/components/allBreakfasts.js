@@ -21,7 +21,7 @@ class AllBreakfasts extends React.Component {
         </div>
         <ul className="container">
           <h1>All breakfasts</h1>
-          <div>
+          <div className="menuPanel">
             {this.props.breakfasts
               ? this.props.breakfasts.map(breakfast => (
                   <div className="card" key={breakfast.id}>

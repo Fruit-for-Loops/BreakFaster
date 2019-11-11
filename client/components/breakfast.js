@@ -63,10 +63,7 @@ class Breakfast extends React.Component {
               <CardSubtitle>
                 ${(this.props.breakfast.price / 100).toFixed(2)}
               </CardSubtitle>
-              <CardText>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </CardText>
+              <CardText>{this.props.breakfast.description}</CardText>
             </CardBody>
             <Button color="primary" onClick={this.handleClick}>
               Add to Cart
