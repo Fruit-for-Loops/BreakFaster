@@ -99,6 +99,24 @@ router.put('/decrease', async (req, res, next) => {
   }
 })
 
+router.put('/:cartId', async (req, res, next) => {
+  try {
+    const cartId = req.params.cartId
+    await Cart.update(
+      {
+        purchased: new Date()
+      },
+      {
+        where: {id: cartId}
+      }
+    )
+    req.session.cartId = null
+    res.sendStatus(200)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.delete('/:id', async (req, res, next) => {
   try {
     const currentCart = await Cart.findByPk(req.session.cartId)
