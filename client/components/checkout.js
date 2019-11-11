@@ -3,7 +3,7 @@ import AddressInput from './address-input'
 import {createOrder} from '../store/order'
 import Cart from './cart'
 import {connect} from 'react-redux'
-import {newPurchase} from '../store/cart'
+import {newPurchase, updateStock} from '../store/cart'
 
 class Checkout extends Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class Checkout extends Component {
 
   makePurchase(cartId) {
     this.props.newPurchaseThunk(cartId)
+    this.props.updateStockThunk()
   }
 
   // handleSubmit(event) {
@@ -23,7 +24,6 @@ class Checkout extends Component {
   // }
 
   render() {
-    console.log('cart id', this.props.cartId)
     return (
       <div>
         <h1>Checkout</h1>
@@ -55,7 +55,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     createOrder: order => dispatch(createOrder(order)),
-    newPurchaseThunk: cartId => dispatch(newPurchase(cartId))
+    newPurchaseThunk: cartId => dispatch(newPurchase(cartId)),
+    updateStockThunk: () => dispatch(updateStock())
   }
 }
 

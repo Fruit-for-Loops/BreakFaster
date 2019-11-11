@@ -4,7 +4,6 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GOT_CART = 'GOT_CART'
-const NEW_PURCHASE = 'PURCHASE'
 /**
  * INITIAL STATE
  */
@@ -14,8 +13,6 @@ const NEW_PURCHASE = 'PURCHASE'
  */
 const gotCart = cart => ({type: GOT_CART, cart})
 
-const purchase = cart => ({type: PURCHASE, cart})
-
 /**
  * THUNK CREATORS
  */
@@ -23,6 +20,21 @@ export const getCart = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/carts')
     dispatch(gotCart(data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const updateStock = () => async dispatch => {
+  try {
+    const {data} = await axios.get('/api/carts')
+    const cartArr = data.cart.cart
+    await cartArr.forEach(async breakfast => {
+      let quantity = breakfast.cartItem.quantity
+      let currentStock = breakfast.stock
+      let newStock = currentStock - quantity
+      await axios.put(`/breakfasts/${breakfast.id}`, newStock)
+    })
   } catch (error) {
     console.log(error)
   }

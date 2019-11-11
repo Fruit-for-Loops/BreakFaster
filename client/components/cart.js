@@ -24,7 +24,6 @@ class Cart extends React.Component {
   }
 
   routeToCheckout(myCart) {
-    console.log(this.props.history)
     this.props.history.push(`/checkout/${myCart[0].cartItem.cartId}`)
   }
 
