@@ -38,13 +38,19 @@ class ItemInCart extends React.Component {
         <td>{item.name}</td>
         <td>${(item.price / 100).toFixed(2)}</td>
         <td>
-          <button disabled={disabledDecrease} onClick={this.handleDecrease}>
+          <button
+            type="button"
+            disabled={disabledDecrease}
+            onClick={this.handleDecrease}
+          >
             -
           </button>
         </td>
         <td>{item.cartItem.quantity}</td>
         <td>
-          <button onClick={this.handleIncrease}>+</button>
+          <button type="button" onClick={this.handleIncrease}>
+            +
+          </button>
         </td>
         <td>
           <img
