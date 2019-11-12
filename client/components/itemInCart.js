@@ -58,15 +58,10 @@ class ItemInCart extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    cart: state.cart
-  }
-}
 const mapDispatchToProps = dispatch => ({
   increaseQuantityThunk: breakfast => dispatch(increaseQuantity(breakfast)),
   decreaseQuantityThunk: breakfast => dispatch(decreaseQuantity(breakfast)),
   removeItemThunk: breakfast => dispatch(removeItemFromCart(breakfast))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemInCart)
+export default connect(null, mapDispatchToProps)(ItemInCart)
