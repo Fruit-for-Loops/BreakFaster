@@ -57,29 +57,68 @@ async function seed() {
       name: 'Full English Breakfast',
       price: 1599,
       stock: 100,
+      pictureUrl:
+        'https://i2.wp.com/metro.co.uk/wp-content/uploads/2017/08/fe.jpg?quality=90&strip=all&zoom=1&resize=644%2C338&ssl=1',
       description: 'Ya got eggs, sausage, baked beans, some other stuff'
     }),
     Breakfast.create({
       name: 'Tofu Scramble Slam',
       price: 1099,
       stock: 100,
+      pictureUrl:
+        'https://lovingitvegan.com/wp-content/uploads/2018/03/Vegan-Tofu-Scramble-11.jpg',
       description:
         'This vegan breakfast includes tofu scramble, hash browns, and vegan sausage',
       tags: ['vegetarian', 'vegan']
     }),
     Breakfast.create({
-      name: 'Cereal',
-      price: 500,
-      stock: 100,
-      description: 'Just cheerios in milk.',
-      tags: ['vegetarian']
-    }),
-    Breakfast.create({
       name: 'Gluten Free Pancake Slam',
       price: 1200,
       stock: 100,
+      pictureUrl:
+        'https://www.kingarthurflour.com/sites/default/files/recipe_legacy/48-3-large.jpg',
       description:
         'This gluten free breakfast includes pancakes, eggs, hash browns, and sausage.'
+    }),
+    Breakfast.create({
+      name: 'Fruit Loops',
+      price: 1200,
+      stock: 100,
+      pictureUrl:
+        'https://cdn3.volusion.com/xntm3.7bebc/v/vspfiles/photos/FO75-2T.png?v-cache=1553348453',
+      description: 'Breakfast of champions.'
+    }),
+    Breakfast.create({
+      name: 'Breakfast Sandwich',
+      price: 1300,
+      stock: 100,
+      pictureUrl:
+        'https://www.oliviascuisine.com/wp-content/uploads/2016/07/ny-bacon-egg-cheese-sandwich.jpg',
+      description: 'New yawk Bacon Egg an cheese'
+    }),
+    Breakfast.create({
+      name: 'Fruit Salad',
+      price: 1300,
+      stock: 100,
+      pictureUrl:
+        'https://sweetphi.com/wp-content/uploads/2019/03/How-to-make-an-instagram-worthy-fruit-bowl-2-720x720.jpg',
+      description: 'Daily dose of fruit'
+    }),
+    Breakfast.create({
+      name: 'Mimosas',
+      price: 1000,
+      stock: 100,
+      pictureUrl:
+        'https://www.lemontreedwelling.com/wp-content/uploads/2019/02/Irish-Mimosa-2-1.jpg',
+      description: `It's 5 o'clock somewhere`
+    }),
+    Breakfast.create({
+      name: 'Coffee',
+      price: 500,
+      stock: 100,
+      pictureUrl:
+        'https://cdn-image.foodandwine.com/sites/default/files/1568907144/Coffee-National-Coffee-Day-FT-Blog0919.jpg',
+      description: 'To get you going'
     })
   ])
   const carts = await Promise.all([

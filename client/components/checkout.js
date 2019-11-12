@@ -4,6 +4,7 @@ import Cart from './cart'
 import {connect} from 'react-redux'
 import {newPurchase, updateStock} from '../store/cart'
 import ThankYou from './thankyou'
+import {Link} from 'react-router-dom'
 
 class Checkout extends Component {
   constructor(props) {
@@ -22,6 +23,9 @@ class Checkout extends Component {
       <div className="checkoutPage">
         <h1>Checkout</h1>
         <h2>Order Summary</h2>
+        <h3>
+          <Link to="/home">Add more breakfasts to your order!</Link>
+        </h3>
         <Cart />
         <form>
           {/* Credit Card Info Stripe Component?*/}
