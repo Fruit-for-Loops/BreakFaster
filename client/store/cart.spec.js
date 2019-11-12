@@ -8,7 +8,6 @@ import {
   removeItemFromCart,
   addToCart
 } from './cart'
-import {reducer} from './index'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
@@ -20,7 +19,6 @@ const mockStore = configureMockStore(middlewares)
 describe('thunk creators', () => {
   let store
   let mockAxios
-  let currentCart
 
   const initialState = {
     cart: []
@@ -29,20 +27,6 @@ describe('thunk creators', () => {
   beforeEach(() => {
     mockAxios = new MockAdapter(axios)
     store = mockStore(initialState)
-    currentCart = [
-      {
-        id: 1,
-        name: 'Tofu Scramble Slam',
-        price: 10,
-        stock: 4,
-        cartItem: {
-          quantity: 1,
-          currentPrice: 10,
-          cartId: 1,
-          breakfastId: 1
-        }
-      }
-    ]
   })
 
   afterEach(() => {
