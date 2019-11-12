@@ -26,6 +26,7 @@ router.post('/signup', async (req, res, next) => {
       email: req.body.email,
       password: req.body.password
     })
+    req.session.cartId = null
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
