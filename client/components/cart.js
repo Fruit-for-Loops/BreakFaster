@@ -24,7 +24,6 @@ class Cart extends React.Component {
 
   render() {
     const myCart = this.props.cart.cart
-    console.log(this.props)
     const total = this.findTotal(myCart)
     return (
       <div>
