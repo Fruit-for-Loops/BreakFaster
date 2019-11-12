@@ -235,3 +235,35 @@ input.qtyminus {
   flex-direction: column;
   align-items: flex-end;
 }
+
+.thankYou {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartSidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkoutBtn {
+  width: 75px;
+  margin-top: 10px;
+}
+
+.checkoutPage {
+  margin-left: 40px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+}
+
+.filters button {
+  width: 100px;
+  margin-bottom: 5px;
+}

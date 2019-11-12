@@ -6,7 +6,7 @@ const Filters = props => {
   return (
     <div>
       <h1>Filters</h1>
-      <div>
+      <div className="filters">
         <Button outline color="primary">
           Sort by Price
         </Button>{' '}
