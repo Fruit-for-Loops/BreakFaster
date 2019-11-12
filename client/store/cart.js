@@ -1,9 +1,15 @@
 import axios from 'axios'
-
+import {
+  getAllBreakfasts,
+  GOT_ALL_BREAKFASTS,
+  gotAllBreakfasts
+} from './breakfast'
 /**
  * ACTION TYPES
  */
 const GOT_CART = 'GOT_CART'
+const ADD_TO_CART = 'ADD_TO_CART'
+const UPDATED_QUANTITY = 'UPDATED_QUANTITY'
 /**
  * INITIAL STATE
  */
@@ -12,6 +18,8 @@ const GOT_CART = 'GOT_CART'
  * ACTION CREATORS
  */
 const gotCart = cart => ({type: GOT_CART, cart})
+const addedToCart = cartItem => ({type: ADD_TO_CART, cartItem})
+const updatedQuantity = cartItem => ({type: UPDATED_QUANTITY, cartItem})
 
 /**
  * THUNK CREATORS
@@ -52,9 +60,9 @@ export const newPurchase = cartId => async dispatch => {
 
 export const addToCart = breakfast => async dispatch => {
   try {
-    await axios.post('/api/carts', breakfast)
-    const {data} = await axios.get('/api/carts')
-    dispatch(gotCart(data))
+    const {data} = await axios.post('/api/carts', breakfast)
+    console.log('thunk data:', data)
+    dispatch(addedToCart(data))
   } catch (error) {
     console.log(error)
   }
@@ -73,9 +81,9 @@ export const removeItemFromCart = breakfast => async dispatch => {
 
 export const increaseQuantity = breakfast => async dispatch => {
   try {
-    await axios.put(`/api/carts/increase`, breakfast)
-    const {data} = await axios.get('/api/carts')
-    dispatch(gotCart(data))
+    const response = await axios.put(`/api/carts/increase`, breakfast)
+    console.log('increasequantity thunk data:', response)
+    dispatch(updatedQuantity(response.data))
   } catch (error) {
     console.log(error)
   }
@@ -92,13 +100,21 @@ export const decreaseQuantity = breakfast => async dispatch => {
 }
 
 const initialState = {
-  cart: []
+  cart: [],
+  breakfasts: []
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case GOT_ALL_BREAKFASTS:
+      return {...state, breakfasts: action.breakfasts}
     case GOT_CART:
       return {...state, cart: action.cart}
+    case ADD_TO_CART:
+      return {...state, cart: [...state.cart, action.cartItem]}
+    case UPDATED_QUANTITY:
+      console.log('reducer updatedquantity action:', action)
+      return {...state, cart: [...state.cart, action.cartItem]}
     default:
       return state
   }

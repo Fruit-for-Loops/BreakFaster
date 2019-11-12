@@ -14,7 +14,13 @@ class Cart extends React.Component {
   constructor(props) {
     super(props)
     this.routeToCheckout = this.routeToCheckout.bind(this)
+    this.findTotal = this.findTotal.bind(this)
   }
+
+  // componentDidMount(){
+  //   this.props.getCartThunk()
+  // }
+
   findTotal(cart) {
     let sum = 0
     cart.forEach(item => {
@@ -28,6 +34,7 @@ class Cart extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const myCart = this.props.cart.cart
     const total = this.findTotal(myCart)
     return (
