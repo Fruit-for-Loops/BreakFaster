@@ -19,7 +19,7 @@ class Checkout extends Component {
 
   render() {
     return (
-      <div>
+      <div className="checkoutPage">
         <h1>Checkout</h1>
         <h2>Order Summary</h2>
         <Cart />
@@ -28,6 +28,7 @@ class Checkout extends Component {
           {/* It appears that with Express Stripe they enter their credit card info with Stripe */}
           <button
             type="submit"
+            className="checkoutBtn"
             onClick={() => this.makePurchase(this.props.cartId)}
           >
             Checkout
