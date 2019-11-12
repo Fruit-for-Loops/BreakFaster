@@ -32,12 +32,6 @@ router.post('/', async (req, res, next) => {
   try {
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.body.id)
-    const newItem = await currentCart.addBreakfast(currentBreakfast)
-    const newBreakfast = await currentCart.getBreakfasts({
-      where: {
-        id: currentBreakfast.id
-      }
-    })
     await CartItem.update(
       {
         currentPrice: currentBreakfast.price
@@ -120,6 +114,17 @@ router.put('/:cartId', async (req, res, next) => {
         where: {id: cartId}
       }
     )
+    const updatedCart = await Cart.findByPk(cartId)
+    const breakfasts = await updatedCart.getBreakfasts()
+    breakfasts.forEach(async item => {
+      console.log('item:', item)
+      // await CartItem.update(
+      //   {
+      //     currentPrice: currentBreakfast.price
+      //   }
+      // )
+    })
+
     req.session.cartId = null
     res.sendStatus(200)
   } catch (error) {
