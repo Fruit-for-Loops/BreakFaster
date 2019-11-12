@@ -17,9 +17,9 @@ class Cart extends React.Component {
     this.findTotal = this.findTotal.bind(this)
   }
 
-  // componentDidMount(){
-  //   this.props.getCartThunk()
-  // }
+  componentDidMount() {
+    this.props.getCartThunk()
+  }
 
   findTotal(cart) {
     let sum = 0

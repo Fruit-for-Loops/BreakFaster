@@ -113,8 +113,16 @@ export default function(state = initialState, action) {
     case ADD_TO_CART:
       return {...state, cart: [...state.cart, action.cartItem]}
     case UPDATED_QUANTITY:
-      console.log('reducer updatedquantity action:', action)
-      return {...state, cart: [...state.cart, action.cartItem]}
+      console.log('oldCart:', state.cart)
+      let newCart = state.cart.map(item => {
+        if (item.id === action.cartItem[0].id) {
+          return action.cartItem[0]
+        } else {
+          return item
+        }
+      })
+      console.log('newCart:', newCart)
+      return {...state, cart: newCart}
     default:
       return state
   }
