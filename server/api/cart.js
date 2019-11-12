@@ -22,6 +22,7 @@ router.get('/', async (req, res, next) => {
     const breakfasts = await currentCart.getBreakfasts({
       order: ['createdAt']
     })
+
     res.json(breakfasts)
   } catch (err) {
     next(err)
