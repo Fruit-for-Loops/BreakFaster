@@ -26,7 +26,7 @@ class Cart extends React.Component {
     const myCart = this.props.cart.cart
     const total = this.findTotal(myCart)
     return (
-      <div>
+      <div className="cartSidebar">
         <h1>Cart</h1>
         <div className="itemInCart">
           <table>
@@ -35,7 +35,9 @@ class Cart extends React.Component {
             })}
           </table>
         </div>
-        Total: ${(total / 100).toFixed(2)}
+        <p>
+          <b>Total: ${(total / 100).toFixed(2)}</b>
+        </p>
         {this.props.location.pathname.includes('/checkout') || (
           <button
             type="button"

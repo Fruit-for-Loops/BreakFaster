@@ -5,7 +5,9 @@ const ThankYou = props => {
   return (
     <div className="thankYou">
       <h1>Thank you for your order!</h1>
-      <Link to="/home">Return home</Link>
+      <h2>
+        <Link to="/home">Return home</Link>
+      </h2>
     </div>
   )
 }
