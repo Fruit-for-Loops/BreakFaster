@@ -2,11 +2,11 @@
 import axios from 'axios'
 
 // ACTION TYPES
-const GOT_ALL_BREAKFASTS = 'GOT_ALL_BREAKFASTS_SUCCESSFULLY'
+export const GOT_ALL_BREAKFASTS = 'GOT_ALL_BREAKFASTS_SUCCESSFULLY'
 const GOT_SINGLE_BREAKFAST = 'GOT_SINGLE_BREAKFAST'
 
 // ACTION CREATORS
-const gotAllBreakfasts = breakfasts => ({
+export const gotAllBreakfasts = breakfasts => ({
   type: GOT_ALL_BREAKFASTS,
   breakfasts
 })

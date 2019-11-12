@@ -4,6 +4,8 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GOT_CART = 'GOT_CART'
+const ADD_TO_CART = 'ADD_TO_CART'
+const UPDATED_QUANTITY = 'UPDATED_QUANTITY'
 /**
  * INITIAL STATE
  */
@@ -12,6 +14,8 @@ const GOT_CART = 'GOT_CART'
  * ACTION CREATORS
  */
 const gotCart = cart => ({type: GOT_CART, cart})
+const addedToCart = cartItem => ({type: ADD_TO_CART, cartItem})
+const updatedQuantity = cartItem => ({type: UPDATED_QUANTITY, cartItem})
 
 /**
  * THUNK CREATORS
@@ -52,9 +56,8 @@ export const newPurchase = cartId => async dispatch => {
 
 export const addToCart = breakfast => async dispatch => {
   try {
-    await axios.post('/api/carts', breakfast)
-    const {data} = await axios.get('/api/carts')
-    dispatch(gotCart(data))
+    const {data} = await axios.post('/api/carts', breakfast)
+    dispatch(addedToCart(data))
   } catch (error) {
     console.log(error)
   }
@@ -62,7 +65,6 @@ export const addToCart = breakfast => async dispatch => {
 
 export const removeItemFromCart = breakfast => async dispatch => {
   try {
-    console.log('breakfast:', breakfast)
     await axios.delete(`/api/carts/${breakfast.id}`)
     const {data} = await axios.get('/api/carts')
     dispatch(gotCart(data))
@@ -73,9 +75,8 @@ export const removeItemFromCart = breakfast => async dispatch => {
 
 export const increaseQuantity = breakfast => async dispatch => {
   try {
-    await axios.put(`/api/carts/increase`, breakfast)
-    const {data} = await axios.get('/api/carts')
-    dispatch(gotCart(data))
+    const response = await axios.put(`/api/carts/increase`, breakfast)
+    dispatch(updatedQuantity(response.data))
   } catch (error) {
     console.log(error)
   }
@@ -99,6 +100,17 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_CART:
       return {...state, cart: action.cart}
+    case ADD_TO_CART:
+      return {...state, cart: [...state.cart, action.cartItem]}
+    case UPDATED_QUANTITY:
+      let newCart = state.cart.map(item => {
+        if (item.id === action.cartItem[0].id) {
+          return action.cartItem[0]
+        } else {
+          return item
+        }
+      })
+      return {...state, cart: newCart}
     default:
       return state
   }
