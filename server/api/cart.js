@@ -8,14 +8,19 @@ router.get('/', async (req, res, next) => {
   const cartSessionId = req.session.cartId
   try {
     let currentCart
+    //check if there is a cart in this session
     if (!cartSessionId) {
-      currentCart = await Cart.handleExistingUserCart(req.user)
+      //if not, get or make a cart for the session
+      //and assign it to the session
+      currentCart = await Cart.getOrMakeCart(req.user)
       req.session.cartId = currentCart.id
     } else {
+      //if so, find the cart associated with this session
       currentCart = await Cart.findByPk(cartSessionId)
     }
+    //get the breakfasts in the current cart and send to client
     const breakfasts = await currentCart.getBreakfasts({
-      order: CartItem.createdAt
+      order: ['createdAt']
     })
     res.json(breakfasts)
   } catch (err) {
