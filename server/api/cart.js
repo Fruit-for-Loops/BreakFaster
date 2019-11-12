@@ -58,35 +58,6 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-// router.put('/increase', async (req, res, next) => {
-//   try {
-//     const [num, updatedItem] = await CartItem.update(
-//       {
-//         quantity: Sequelize.literal('quantity + 1')
-//       },
-//       {
-//         where: {
-//           breakfastId: req.body.id,
-//           cartId: req.session.cartId
-//         },
-//         returning: true,
-//         plain: true
-//       }
-//     )
-//     console.log('router newItem:', updatedItem)
-//     const currentCart = await Cart.findByPk(updatedItem.cartId)
-//     const updatedBreakfast = await currentCart.getBreakfasts({
-//       where: {
-//         id: updatedItem.breakfastId
-//       }
-//     })
-//     console.log('router updatedBreakfast:', updatedBreakfast[0])
-//     res.status(204).json(updatedBreakfast[0])
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-
 router.put('/increase', async (req, res, next) => {
   try {
     await CartItem.update(

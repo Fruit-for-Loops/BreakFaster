@@ -14,7 +14,6 @@ class AllBreakfasts extends React.Component {
   }
 
   render() {
-    console.log(this.props.breakfasts)
     return (
       <div className="allBreakfasts">
         <div className="sidebar">

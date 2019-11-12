@@ -34,7 +34,6 @@ class ItemInCart extends React.Component {
   }
 
   render() {
-    console.log('this.props:', this.props)
     const item = this.props.item
     const disabledDecrease = item.cartItem.quantity === 0
     return (
