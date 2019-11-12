@@ -51,7 +51,10 @@ router.post('/', async (req, res, next) => {
         }
       }
     )
-    res.sendStatus(201)
+    const updatedBreakfast = await currentCart.getBreakfasts({
+      where: {id: req.body.id}
+    })
+    res.status(201).send(updatedBreakfast[0])
   } catch (error) {
     next(error)
   }
@@ -72,7 +75,11 @@ router.put('/increase', async (req, res, next) => {
         plain: true
       }
     )
-    res.sendStatus(204)
+    const currentCart = await Cart.findByPk(req.session.cartId)
+    const updatedBreakfast = await currentCart.getBreakfasts({
+      where: {id: req.body.id}
+    })
+    res.send(updatedBreakfast)
   } catch (error) {
     next(error)
   }
@@ -93,12 +100,17 @@ router.put('/decrease', async (req, res, next) => {
         plain: true
       }
     )
-    res.sendStatus(204)
+    const currentCart = await Cart.findByPk(req.session.cartId)
+    const updatedBreakfast = await currentCart.getBreakfasts({
+      where: {id: req.body.id}
+    })
+    res.send(updatedBreakfast)
   } catch (error) {
     next(error)
   }
 })
 
+//what is this sending back?
 router.put('/:cartId', async (req, res, next) => {
   try {
     const cartId = req.params.cartId
@@ -121,8 +133,11 @@ router.delete('/:id', async (req, res, next) => {
   try {
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.params.id)
+    const deletedBreakfast = await currentCart.getBreakfasts({
+      where: {id: req.body.id}
+    })
     await currentCart.removeBreakfast(currentBreakfast)
-    res.sendStatus(204)
+    res.send(deletedBreakfast)
   } catch (error) {
     next(error)
   }
