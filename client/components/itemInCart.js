@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 import {
   removeItemFromCart,
   increaseQuantity,
-  decreaseQuantity,
-  getCart
+  decreaseQuantity
 } from '../store/cart'
 
 class ItemInCart extends React.Component {
@@ -15,17 +14,11 @@ class ItemInCart extends React.Component {
     this.handleIncrease = this.handleIncrease.bind(this)
   }
 
-  componentDidMount() {
-    this.props.getCartThunk()
-  }
-
   handleDelete() {
-    event.preventDefault()
     this.props.removeItemThunk(this.props.item)
   }
 
   handleDecrease = () => {
-    event.preventDefault()
     this.props.decreaseQuantityThunk(this.props.item)
   }
 
@@ -76,8 +69,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   increaseQuantityThunk: breakfast => dispatch(increaseQuantity(breakfast)),
   decreaseQuantityThunk: breakfast => dispatch(decreaseQuantity(breakfast)),
-  removeItemThunk: breakfast => dispatch(removeItemFromCart(breakfast)),
-  getCartThunk: () => dispatch(getCart())
+  removeItemThunk: breakfast => dispatch(removeItemFromCart(breakfast))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemInCart)

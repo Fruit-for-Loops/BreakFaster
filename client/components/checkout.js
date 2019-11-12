@@ -3,6 +3,7 @@ import AddressInput from './address-input'
 import Cart from './cart'
 import {connect} from 'react-redux'
 import {newPurchase, updateStock} from '../store/cart'
+import ThankYou from './thankyou'
 
 class Checkout extends Component {
   constructor(props) {
@@ -10,10 +11,10 @@ class Checkout extends Component {
     this.makePurchase = this.makePurchase.bind(this)
   }
 
-  makePurchase(event, cartId) {
-    event.preventDefault()
+  makePurchase(cartId) {
     this.props.newPurchaseThunk(cartId)
     this.props.updateStockThunk()
+    this.props.history.push('/thankyou')
   }
 
   render() {
@@ -22,12 +23,12 @@ class Checkout extends Component {
         <h1>Checkout</h1>
         <h2>Order Summary</h2>
         <Cart />
-        <form onSubmit={this.handleSubmit}>
+        <form>
           {/* Credit Card Info Stripe Component?*/}
           {/* It appears that with Express Stripe they enter their credit card info with Stripe */}
           <button
             type="submit"
-            onClick={() => this.makePurchase(event, this.props.cartId)}
+            onClick={() => this.makePurchase(this.props.cartId)}
           >
             Checkout
           </button>
