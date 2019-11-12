@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addToCart, getCart, increaseQuantity} from '../store'
+import {addToCart, increaseQuantity} from '../store'
 import {
   Card,
   CardImg,
@@ -17,10 +17,6 @@ class Breakfast extends React.Component {
     this.addCart = this.addCart.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.containsItem = this.containsItem.bind(this)
-  }
-
-  componentDidMount() {
-    this.props.getCartThunk()
   }
 
   addCart = () => {
@@ -77,13 +73,11 @@ class Breakfast extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
     cart: state.cart
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  getCartThunk: () => dispatch(getCart()),
   addToCartThunk: breakfast => dispatch(addToCart(breakfast)),
   increaseQuantityThunk: breakfast => dispatch(increaseQuantity(breakfast))
 })

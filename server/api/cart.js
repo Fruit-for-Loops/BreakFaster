@@ -137,7 +137,7 @@ router.delete('/:id', async (req, res, next) => {
     const currentCart = await Cart.findByPk(req.session.cartId)
     const currentBreakfast = await Breakfast.findByPk(req.params.id)
     const deletedBreakfast = await currentCart.getBreakfasts({
-      where: {id: req.body.id}
+      where: {id: req.params.id}
     })
     await currentCart.removeBreakfast(currentBreakfast)
     res.send(deletedBreakfast)

@@ -1,13 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import {
-  getCart,
-  removeItemFromCart,
-  increaseQuantity,
-  decreaseQuantity
-} from '../store/cart'
-import {getSingleBreakfast} from '../store/breakfast'
 import ItemInCart from './itemInCart'
 
 class Cart extends React.Component {
@@ -15,10 +8,6 @@ class Cart extends React.Component {
     super(props)
     this.routeToCheckout = this.routeToCheckout.bind(this)
     this.findTotal = this.findTotal.bind(this)
-  }
-
-  componentDidMount() {
-    this.props.getCartThunk()
   }
 
   findTotal(cart) {
@@ -63,17 +52,8 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
     cart: state.cart
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  getSingleBreakfastThunk: () => dispatch(getSingleBreakfast()),
-  getCartThunk: () => dispatch(getCart()),
-  increaseQuantityThunk: breakfast => dispatch(increaseQuantity(breakfast)),
-  decreaseQuantityThunk: breakfast => dispatch(decreaseQuantity(breakfast)),
-  removeItemThunk: breakfast => dispatch(removeItemFromCart(breakfast))
-})
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cart))
+export default withRouter(connect(mapStateToProps)(Cart))
