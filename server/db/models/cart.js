@@ -7,15 +7,20 @@ const Cart = db.define('cart', {
   }
 })
 
-Cart.handleExistingUserCart = async userId => {
-  let currentCart = await Cart.findOrCreate({
-    where: {
-      userId: userId,
-      purchased: null
+Cart.handleExistingUserCart = async user => {
+  let currentCart
+  if (user) {
+    currentCart = await Cart.findOrCreate({
+      where: {
+        userId: user.id,
+        purchased: null
+      }
+    })
+    if (currentCart[0].id) {
+      currentCart = currentCart[0]
     }
-  })
-  if (currentCart[0].id) {
-    currentCart = currentCart[0]
+  } else {
+    currentCart = await Cart.create({purchased: null})
   }
   return currentCart
 }

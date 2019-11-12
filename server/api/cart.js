@@ -9,11 +9,7 @@ router.get('/', async (req, res, next) => {
   try {
     let currentCart
     if (!cartSessionId) {
-      if (req.user) {
-        currentCart = Cart.handleExistingUserCart(req.user.id)
-      } else {
-        currentCart = await Cart.create({purchased: null})
-      }
+      currentCart = await Cart.handleExistingUserCart(req.user)
       req.session.cartId = currentCart.id
     } else {
       currentCart = await Cart.findByPk(cartSessionId)
