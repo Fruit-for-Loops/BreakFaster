@@ -5,7 +5,6 @@ import Breakfast from './breakfast'
 import Cart from './cart'
 import Filters from './filters'
 import {getCart} from '../store/cart'
-// import Breakfast from './Breakfast';
 
 class AllBreakfasts extends React.Component {
   componentDidMount() {
@@ -50,5 +49,4 @@ const mapDispatchToProps = dispatch => ({
   getCartThunk: () => dispatch(getCart())
 })
 
-// export default AllBreakfasts
 export default connect(mapStateToProps, mapDispatchToProps)(AllBreakfasts)
