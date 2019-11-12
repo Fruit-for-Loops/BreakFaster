@@ -7,4 +7,17 @@ const Cart = db.define('cart', {
   }
 })
 
+Cart.handleExistingUserCart = async userId => {
+  let currentCart = await Cart.findOrCreate({
+    where: {
+      userId: userId,
+      purchased: null
+    }
+  })
+  if (currentCart[0].id) {
+    currentCart = currentCart[0]
+  }
+  return currentCart
+}
+
 module.exports = Cart

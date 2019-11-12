@@ -10,15 +10,7 @@ router.get('/', async (req, res, next) => {
     let currentCart
     if (!cartSessionId) {
       if (req.user) {
-        currentCart = await Cart.findOrCreate({
-          where: {
-            userId: req.user.id,
-            purchased: null
-          }
-        })
-        if (currentCart[0].id) {
-          currentCart = currentCart[0]
-        }
+        currentCart = Cart.handleExistingUserCart(req.user.id)
       } else {
         currentCart = await Cart.create({purchased: null})
       }
