@@ -49,12 +49,9 @@ class ItemInCart extends React.Component {
           </button>
         </td>
         <td>
-          <img
-            src="./images/Recycle_bin.png"
-            height="25px"
-            id="trash"
-            onClick={this.handleDelete}
-          />
+          <button type="button" onClick={this.handleDelete}>
+            X
+          </button>
         </td>
       </tr>
     )

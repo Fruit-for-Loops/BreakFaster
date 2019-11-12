@@ -15,9 +15,9 @@ class AllBreakfasts extends React.Component {
   render() {
     return (
       <div className="allBreakfasts">
-        <div className="sidebar">
+        {/* <div className="sidebar">
           <Filters />
-        </div>
+        </div> */}
         <ul className="container">
           <h1>All breakfasts</h1>
           <div className="menuPanel">

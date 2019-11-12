@@ -53,6 +53,7 @@ class Breakfast extends React.Component {
               width="150px"
               src={this.props.breakfast.pictureUrl}
               alt="Card image cap"
+              className="breakfastImage"
             />
             <CardBody className="cardBody">
               <CardTitle>{this.props.breakfast.name}</CardTitle>
@@ -61,7 +62,11 @@ class Breakfast extends React.Component {
               </CardSubtitle>
               <CardText>{this.props.breakfast.description}</CardText>
             </CardBody>
-            <Button color="primary" onClick={this.handleClick}>
+            <Button
+              color="primary"
+              onClick={this.handleClick}
+              className="addToCartBtn"
+            >
               Add to Cart
             </Button>
           </Card>
