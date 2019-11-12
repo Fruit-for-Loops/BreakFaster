@@ -68,7 +68,6 @@ export const addToCart = breakfast => async dispatch => {
 export const removeItemFromCart = breakfast => async dispatch => {
   try {
     const response = await axios.delete(`/api/carts/${breakfast.id}`)
-    console.log('response', response)
     dispatch(removedFromCart(response.data))
   } catch (error) {
     console.log(error)
