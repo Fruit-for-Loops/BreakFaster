@@ -93,7 +93,6 @@ router.put('/decrease', async (req, res, next) => {
   }
 })
 
-//what is this sending back?
 router.put('/:cartId', async (req, res, next) => {
   try {
     const cartId = req.params.cartId

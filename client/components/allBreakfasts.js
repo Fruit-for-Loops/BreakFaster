@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {getAllBreakfasts} from '../store'
 import Breakfast from './breakfast'
 import Cart from './cart'
-import Filters from './filters'
 import {getCart} from '../store/cart'
 
 class AllBreakfasts extends React.Component {
@@ -15,9 +14,6 @@ class AllBreakfasts extends React.Component {
   render() {
     return (
       <div className="allBreakfasts">
-        {/* <div className="sidebar">
-          <Filters />
-        </div> */}
         <ul className="container">
           <h1>All breakfasts</h1>
           <div className="menuPanel">
