@@ -8,7 +8,7 @@ const expect = require('chai').expect
 const db = require('../db')
 const {Cart, User} = require('./index')
 
-describe('Cart', function() {
+xdescribe('Cart', function() {
   // clear the database before all tests
   before(() => {
     return db.sync({force: true})
@@ -24,7 +24,6 @@ describe('Cart', function() {
       const newUser = await User.create({email: 'a@b.com', password: '1234'})
 
       const newCart = await Cart.create()
-      console.log(newCart)
       await newCart.setUser(newUser)
     })
 
